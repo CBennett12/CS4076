@@ -20,11 +20,20 @@ private:
 	void goRoom(Command command);
     void createItems();
     void displayItems();
-
+    void dropItem(Command command);
+    void scan(Command command);
+    void useAttack(Command command);
 public:
 	ZorkUL();
 	void play();
 	string go(string direction);
+    bool moveSet;
+    bool scanSet;
+    bool tacticalSet;
+    Command* moveCommand;
+    Command* scanCommand;
+    Command* tacticalCommand;
+
 };
 
 #endif /*ZORKUL_H_*/

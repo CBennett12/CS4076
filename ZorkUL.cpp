@@ -1,4 +1,5 @@
 #include <iostream>
+#include <Command.h>
 
 using namespace std;
 #include "ZorkUL.h"
@@ -47,15 +48,53 @@ void ZorkUL::createRooms()  {
 /**
  *  Main play routine.  Loops until end of play.
  */
+bool moveSet;
+bool scanSet;
+bool tacticalSet;
+
+
 void ZorkUL::play() {
-	printWelcome();
+    moveSet = false;
+    scanSet = false;
+    tacticalSet = false;
+    printWelcome();
 
 	// Enter the main command loop.  Here we repeatedly read commands and
 	// execute them until the ZorkUL game is over.
 
 	bool finished = false;
+
+
 	while (!finished) {
-		// Create pointer to command and give it a command.
+    cout << "Movement command: " ;
+        if (!moveSet)
+            {
+                cout << "not set."<< endl;
+            }
+     else
+        {
+         cout << "set."<< endl;
+        }
+
+   cout << "Scanning command: " ;
+    if (!scanSet)
+       {
+        cout << "not set."<< endl;
+       }
+    else
+    {
+      cout << "set."<< endl;
+    }
+
+  cout << "Tactical command: " ;
+   if (!tacticalSet)
+   {
+   cout << "not set."<< endl;
+   }
+  else {
+       cout << "set."<< endl;
+   }
+        // Create pointer to command and give it a command.
 		Command* command = parser.getCommand();
 		// Pass dereferenced command and check for end of game.
 		finished = processCommand(*command);
@@ -86,7 +125,7 @@ bool ZorkUL::processCommand(Command command) {
 	}
 
 	string commandWord = command.getCommandWord();
-	if (commandWord.compare("info") == 0)
+    if (commandWord.compare("help") == 0)
 		printHelp();
 
 	else if (commandWord.compare("map") == 0)
@@ -101,7 +140,37 @@ bool ZorkUL::processCommand(Command command) {
 		}
 
 	else if (commandWord.compare("go") == 0)
-		goRoom(command);
+    {
+        moveSet=true;
+        Command moveCommand = command;
+        //goRoom(command);
+    }
+
+    else if (commandWord.compare("drop") == 0)
+        dropItem(command);
+
+    else if (commandWord.compare("scan") == 0)
+        {
+        scanSet=true;
+        Command scanCommand = command;
+        //scan(command);
+        }
+
+    else if (commandWord.compare("fire") == 0)
+        {
+        tacticalSet = true;
+        Command tacticalCommand = command;
+        //useAttack(command);
+        }
+    else if (commandWord.compare("end") == 0)
+       {
+        if (moveSet == true)goRoom(*moveCommand);
+        if (tacticalSet == true) useAttack(*tacticalCommand);
+        if (scanSet == true)scan(*scanCommand);
+        moveSet=false;
+        scanSet=false;
+        tacticalSet=false;
+       }
 
     else if (commandWord.compare("take") == 0)
     {
@@ -184,4 +253,16 @@ string ZorkUL::go(string direction) {
 		currentRoom = nextRoom;
 		return currentRoom->longDescription();
 	}
+
 }
+void ZorkUL::dropItem(Command command) {
+        cout << "Item dropped" <<endl;
+        }
+
+void ZorkUL::scan(Command command) {
+        cout << "\n...scanning\n" <<endl;
+        }
+
+void ZorkUL::useAttack(Command command) {
+        cout << "\nAttack used...\n" <<endl;
+        }

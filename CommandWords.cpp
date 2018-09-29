@@ -10,10 +10,14 @@ CommandWords::CommandWords() {
 	if (validCommands.empty()) {
 		validCommands.push_back("go");
 		validCommands.push_back("quit");
-		validCommands.push_back("info");
+        validCommands.push_back("help");
 		validCommands.push_back("map");
 		validCommands.push_back("take");
 		validCommands.push_back("put");
+        validCommands.push_back("end");
+        validCommands.push_back("drop");
+        validCommands.push_back("scan");
+        validCommands.push_back("fire");
 	}
 }
 
