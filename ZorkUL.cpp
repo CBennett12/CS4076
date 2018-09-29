@@ -52,6 +52,12 @@ bool moveSet;
 bool scanSet;
 bool tacticalSet;
 
+Command commands[3];
+/*
+ * commands[0] = moveCommand
+ * commands[1] = scanCommand
+ * commands[2] = tacticalComand
+ **/
 
 void ZorkUL::play() {
     moveSet = false;
@@ -141,9 +147,13 @@ bool ZorkUL::processCommand(Command command) {
 
 	else if (commandWord.compare("go") == 0)
     {
-        moveSet=true;
-        Command moveCommand = command;
-        //goRoom(command);
+        if (!moveSet)
+        {
+            moveSet=true;
+        commands[0] = command;
+
+        }
+        else cout << "Movement command already set" << endl;
     }
 
     else if (commandWord.compare("drop") == 0)
@@ -151,25 +161,43 @@ bool ZorkUL::processCommand(Command command) {
 
     else if (commandWord.compare("scan") == 0)
         {
-        scanSet=true;
-        Command scanCommand = command;
-        //scan(command);
+        if (!scanSet)
+        {
+            commands[1] = command;
+            scanSet=true;
+        }
+        else cout << "Scanning command already set" << endl;
         }
 
     else if (commandWord.compare("fire") == 0)
         {
-        tacticalSet = true;
-        Command tacticalCommand = command;
-        //useAttack(command);
+            if (!tacticalSet)
+            {
+               commands[2] = command;
+                tacticalSet = true;
+            }
+            else cout << "Tactical command already set" << endl;
         }
     else if (commandWord.compare("end") == 0)
        {
-        if (moveSet == true)goRoom(*moveCommand);
-        if (tacticalSet == true) useAttack(*tacticalCommand);
-        if (scanSet == true)scan(*scanCommand);
-        moveSet=false;
-        scanSet=false;
-        tacticalSet=false;
+        if (moveSet)
+        {
+            //cout << moveCommand.getSecondWord() << endl;
+            goRoom(commands[0]);
+        }
+
+        if (tacticalSet)
+        {
+            useAttack(commands[1]);
+        }
+
+        if (scanSet)
+        {
+            scan(commands[2]);
+        }
+       moveSet=false;
+       scanSet=false;
+       tacticalSet=false;
        }
 
     else if (commandWord.compare("take") == 0)

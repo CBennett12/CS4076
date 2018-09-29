@@ -9,6 +9,11 @@ Command::Command(string firstWord, string secondWord) {
 	this->commandWord = firstWord;
 	this->secondWord = secondWord;
 }
+//Empty Command contructor used in initialising commands array
+Command:: Command()
+{
+
+}
 
 /**
  * Return the command word (the first word) of this command. If the

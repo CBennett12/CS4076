@@ -30,9 +30,7 @@ public:
     bool moveSet;
     bool scanSet;
     bool tacticalSet;
-    Command* moveCommand;
-    Command* scanCommand;
-    Command* tacticalCommand;
+    Command commands[3];
 
 };
 
