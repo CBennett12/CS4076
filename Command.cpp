@@ -12,7 +12,8 @@ Command::Command(string firstWord, string secondWord) {
 //Empty Command contructor used in initialising commands array
 Command:: Command()
 {
-
+commandWord="";
+secondWord="";
 }
 
 /**

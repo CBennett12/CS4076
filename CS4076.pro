@@ -1,7 +1,9 @@
-QT -= gui
+QT += gui
 
-CONFIG += c++11 console
-CONFIG -= app_bundle
+
+TARGET = CS4076
+TEMPLATE = app
+
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
@@ -14,28 +16,61 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+CONFIG += c++11
+
+
 SOURCES += \
-    Character.cpp \
+        main.cpp \
+        mainwindow.cpp \
+    ZorkUL.cpp \
     Command.cpp \
     CommandWords.cpp \
+    Character.cpp \
     item.cpp \
     Parser.cpp \
     Room.cpp \
-    ZorkUL.cpp
+    selectmove.cpp \
+    selectscan.cpp \
+    selecttact.cpp
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 DISTFILES += \
+    README.md \
     README.md
 
 HEADERS += \
-    Character.h \
+        mainwindow.h \
     Command.h \
+    ZorkUL.h \
+    Character.h \
     CommandWords.h \
     item.h \
     Parser.h \
     Room.h \
-    ZorkUL.h
+    selectmove.h \
+    selectscan.h \
+    selecttact.h
+
+SUBDIRS += \
+    CS4076.pro
+
+RESOURCES += \
+    resources.qrc
+
+FORMS += \
+        mainwindow.ui \
+    selectmove.ui \
+    selectscan.ui \
+    selecttact.ui
+
+DISTFILES +=
+
+RESOURCES += \
+    resources.qrc
