@@ -37,6 +37,7 @@ public:
     void setMove(string command);
     void setScan(string command);
     void setTact(string command);
+    void resetCommands();
 
 };
 

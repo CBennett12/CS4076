@@ -13,7 +13,7 @@ SelectTact::SelectTact(QWidget *parent) :
 
      btnGroup->addButton(ui->mButton, 0);
      btnGroup->addButton(ui->tButton, 1);
-     int btnPressed;
+     int btnPressed=-1;
      btnPressed=btnGroup->id(btnGroup-> checkedButton());
 }
 

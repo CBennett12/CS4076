@@ -12,6 +12,7 @@
 #include <QPixmap>
 #include <QLayout>
 #include "ZorkUL.h"
+#include <QPalette>
 
 namespace Ui {
 class MainWindow;
@@ -31,7 +32,7 @@ private slots:
     void handlemButton();
     void handlerButton();
     void handlegButton();
-    void changePixmap(QLabel* image);
+    void setPixmap();
 
 private:
     Ui::MainWindow *ui;
@@ -53,6 +54,10 @@ private:
     int btnSelected;
     ZorkUL game;
     string command;
+    QColor transpColour;
+    QColor fullColour;
+    QPalette transPalette;
+    QPalette fullPalette;
 };
 
 #endif // MAINWINDOW_H

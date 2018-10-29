@@ -16,58 +16,21 @@ MainWindow::MainWindow(QWidget *parent) :
     QPixmap rPic;
     rPic.load(":/rec/red.png");
     gPic.load(":/rec/green.png");
-    //gBtn = new QPushButton("End turn", this);
-    //QLabel* lLabel = new QLabel(this);
-    QLabel* tLabel = new QLabel(this);
-    tLabel->setGeometry(60, 25, 100, 100);
-    cout << game.isMoveSet();
-    if (game.isMoveSet() == false)
-    {
     ui->lLabel->setPixmap(rPic);
-    }
-    else ui->lLabel->setPixmap(gPic);
-    //QLabel* mLabel = new QLabel(this);
-    //mLabel->setGeometry(225, 25, 100, 100);
-    if (game.isScanSet() == false)
-    {
-        ui->mLabel->setPixmap(rPic);
-    }
-    else ui->mLabel->setPixmap(gPic);
-    //QLabel* rLabel = new QLabel(this);
-    //rLabel->setGeometry(400, 25, 100, 100);
-    if (game.isTactSet() == false)
-    {
-        ui->rLabel->setPixmap(rPic);
-    }
-    else ui->rLabel->setPixmap(gPic);
+    ui->lGLabel->setPixmap(gPic);
+    ui->mLabel->setPixmap(rPic);
+    ui->mGLabel->setPixmap(gPic);
+    ui->rLabel->setPixmap(rPic);
+    ui->rGLabel->setPixmap(gPic);
+    setPixmap();
     //lLabel->show();
     this->setGeometry(
         QRect(
                     QPoint(700, 400),
                     QSize(555, 350))
              );
-   /* lBtn->setGeometry(
-        QRect(
-                    QPoint(30, 200),
-                    QSize(150, 50))
-             );
-    mBtn->setGeometry(
-        QRect(
-                    QPoint(205, 200),
-                    QSize(150, 50))
-             );
-    rBtn->setGeometry(
-        QRect(
-                    QPoint(380, 200),
-                    QSize(150, 50))
-             );
-    gBtn->setGeometry(
-        QRect(
-                    QPoint(205, 275),
-                    QSize(150, 50))
-             );*/
-tLabel->setPixmap(gPic);
-tLabel->hide();
+
+
 ui->cBtnLayout->addWidget(ui->lBtn);
 ui->cBtnLayout->addWidget(ui->mBtn);
 ui->cBtnLayout->addWidget(ui->rBtn);
@@ -102,10 +65,11 @@ void MainWindow:: handlelButton()
     if (btnSelected >= 0)
     {
     command = to_string(btnSelected);
-        //lLabel->hide();
-    changePixmap(tLabel);
-
-    game.setMove(command);
+    if (command.compare("")!=0)
+    {
+     game.setMove(command);
+     setPixmap();
+    }
     }
 
 }
@@ -118,6 +82,7 @@ void MainWindow:: handlemButton()
     string command;
     command=setScanning.currentSelected;
     game.setScan(command);
+    setPixmap();
 }
 
 void MainWindow:: handlerButton()
@@ -128,27 +93,37 @@ void MainWindow:: handlerButton()
     string command;
     int btnSelected;
     btnSelected=setTactical.btnPressed;
-    if (btnSelected >= 0)
-    {
     command = to_string(btnSelected);
-    //command=setScanning.btnPressed;
     game.setTact(command);
-    }
+    setPixmap();
 }
 
 void MainWindow:: handlegButton()
 {
     QMessageBox messageBox(this);
-    messageBox.about(this, "Move", "Commands Set");
+    messageBox.about(this, "Move", "Executing commands");
+    game.resetCommands();
+    setPixmap();
     /*ZorkUL temp;
     temp.play();*/
 }
 
-void MainWindow:: changePixmap(QLabel* image)
+void MainWindow:: setPixmap()
 {
-    //rPic.load(":/rec/green.png");
-    //image->show();
-    //ui->imageLayout->update();
-    //image->setVisible(false);
+    if (game.isMoveSet() == false)
+    {
+        ui->lGLabel->hide();
+    }
+    else ui->lGLabel->show();
+    if (game.isScanSet() == false)
+    {
+        ui->mGLabel->hide();
+    }
+    else ui->mGLabel->show();
+    if (game.isTactSet() == false)
+    {
+       ui->rGLabel->hide();
+    }
+    else ui->rGLabel->show();
 
 }

@@ -341,3 +341,15 @@ void ZorkUL:: setTact(string command){
     commands[2]=command;
     tacticalSet=true;
 }
+
+void ZorkUL:: resetCommands()
+{
+ for (int i=0; i<commands->length();i++)
+ {
+     commands[i]="";
+ }
+ moveSet=false;
+ scanSet=false;
+ tacticalSet=false;
+
+}
