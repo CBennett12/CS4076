@@ -17,14 +17,28 @@ private:
 	void printWelcome();
 	bool processCommand(Command command);
 	void printHelp();
-	void goRoom(Command command);
+    void goRoom(string command);
     void createItems();
     void displayItems();
-
+    void dropItem(Command command);
+    void scan(string command);
+    void useAttack(string command);
 public:
 	ZorkUL();
 	void play();
-	string go(string direction);
+    string go(string direction);
+    bool moveSet;
+    bool scanSet;
+    bool tacticalSet;
+    string commands[3];
+    bool isMoveSet();
+    bool isScanSet();
+    bool isTactSet();
+    void setMove(string command);
+    void setScan(string command);
+    void setTact(string command);
+    void resetCommands();
+
 };
 
 #endif /*ZORKUL_H_*/
