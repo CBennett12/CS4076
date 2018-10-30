@@ -29,20 +29,34 @@
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>570</y>
-      <width>531</width>
-      <height>102</height>
+      <x>10</x>
+      <y>650</y>
+      <width>1011</width>
+      <height>51</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="cBtnLayout">
+     <property name="spacing">
+      <number>14</number>
+     </property>
      <item>
       <widget class="QPushButton" name="mBtn">
        <property name="minimumSize">
         <size>
-         <width>151</width>
-         <height>81</height>
+         <width>150</width>
+         <height>50</height>
         </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>Set Scanning</string>
@@ -53,9 +67,20 @@
       <widget class="QPushButton" name="lBtn">
        <property name="minimumSize">
         <size>
-         <width>151</width>
-         <height>81</height>
+         <width>150</width>
+         <height>50</height>
         </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>Set Movement</string>
@@ -66,9 +91,20 @@
       <widget class="QPushButton" name="rBtn">
        <property name="minimumSize">
         <size>
-         <width>151</width>
-         <height>81</height>
+         <width>150</width>
+         <height>50</height>
         </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>Set Tactical</string>
@@ -80,10 +116,10 @@
    <widget class="QWidget" name="horizontalLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>690</y>
-      <width>181</width>
-      <height>71</height>
+      <x>441</x>
+      <y>710</y>
+      <width>151</width>
+      <height>52</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="turnLayout">
@@ -91,9 +127,20 @@
       <widget class="QPushButton" name="gBtn">
        <property name="minimumSize">
         <size>
-         <width>169</width>
-         <height>61</height>
+         <width>150</width>
+         <height>50</height>
         </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>End Turn</string>
@@ -105,8 +152,8 @@
    <widget class="QLabel" name="lGLabel">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>20</y>
+      <x>160</x>
+      <y>30</y>
       <width>100</width>
       <height>100</height>
      </rect>
@@ -130,8 +177,8 @@
    <widget class="QLabel" name="mGLabel">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>20</y>
+      <x>450</x>
+      <y>30</y>
       <width>100</width>
       <height>100</height>
      </rect>
@@ -155,8 +202,8 @@
    <widget class="QLabel" name="rGLabel">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>20</y>
+      <x>760</x>
+      <y>30</y>
       <width>100</width>
       <height>100</height>
      </rect>
@@ -180,8 +227,8 @@
    <widget class="QLabel" name="rLabel">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>20</y>
+      <x>760</x>
+      <y>30</y>
       <width>100</width>
       <height>100</height>
      </rect>
@@ -205,8 +252,8 @@
    <widget class="QLabel" name="lLabel">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>20</y>
+      <x>160</x>
+      <y>30</y>
       <width>100</width>
       <height>100</height>
      </rect>
@@ -230,8 +277,8 @@
    <widget class="QLabel" name="mLabel">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>20</y>
+      <x>450</x>
+      <y>30</y>
       <width>100</width>
       <height>100</height>
      </rect>

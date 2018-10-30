@@ -22,6 +22,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->mGLabel->setPixmap(gPic);
     ui->rLabel->setPixmap(rPic);
     ui->rGLabel->setPixmap(gPic);
+    ui->lLabel->setScaledContents(true);
+    ui->lGLabel->setScaledContents(true);
+    ui->mLabel->setScaledContents(true);
+    ui->mGLabel->setScaledContents(true);
+    ui->rLabel->setScaledContents(true);
+    ui->rGLabel->setScaledContents(true);
     setPixmap();
     //lLabel->show();
     this->setGeometry(

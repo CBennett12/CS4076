@@ -22,6 +22,11 @@
     <height>300</height>
    </size>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
@@ -47,8 +52,13 @@
      <x>10</x>
      <y>60</y>
      <width>371</width>
-     <height>51</height>
+     <height>61</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>13</pointsize>
+    </font>
    </property>
    <item>
     <property name="text">
