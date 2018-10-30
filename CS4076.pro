@@ -68,7 +68,8 @@ FORMS += \
         mainwindow.ui \
     selectmove.ui \
     selectscan.ui \
-    selecttact.ui
+    selecttact.ui \
+    map.ui
 
 DISTFILES +=
 
