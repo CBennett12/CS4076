@@ -11,6 +11,7 @@
 #include <iostream>
 #include <vector>
 #include "Room.h"
+
 using namespace std;
 
 class PlayerInput : public QWidget
@@ -25,7 +26,7 @@ class PlayerInput : public QWidget
        int size; //Global Variable
 
     private:
-        QPushButton *forward, *reverse, *port, *starboard, *scanAct, *scanPas, *fireTorp, *layMine, *reloadTorp, *reloadMine, *salvage;
+        QPushButton *moveBtn, *scanBtn, *tactBtn;
         QLabel *tact, *scan, *nav, *temp;
         QGridLayout *mainLayout, *buttonLayout, *mapLayout;
         Room *currentRoom;
@@ -44,5 +45,11 @@ class PlayerInput : public QWidget
         void tactReloadTorpedo();
         void tactReloadMine();
         void tactSalvage();*/
+
+private slots:
+    void handlemButton();
+    void handlesButton();
+    void handletButton();
+    void setPixmap();
 };
 #endif // PlayerInput_H

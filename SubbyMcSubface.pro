@@ -28,15 +28,18 @@ SOURCES += \
         mainwindow.cpp \
     playerinput.cpp \
     room.cpp \
-    starter.cpp
+    starter.cpp \
+    getcommand.cpp
 
 HEADERS += \
         mainwindow.h \
     playerinput.h \
-    room.h
+    room.h \
+    getcommand.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    getcommand.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
