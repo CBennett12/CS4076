@@ -7,6 +7,8 @@ PlayerInput::PlayerInput()
 {
     size = 10; //global variable
     count = 0;
+    QFont font;
+    font.setPointSize(12);
     cout << "here" << endl;
     moveBtn = new QPushButton("Set Movement Command");
     scanBtn = new QPushButton("Set Scanning Command");
@@ -20,23 +22,26 @@ PlayerInput::PlayerInput()
     reloadMine = new QPushButton("Reload Mine");
     salvage = new QPushButton("Salvage");*/
 
-    tact = new QLabel("Set Tactical Commands");
-    scan = new QLabel("Set Scan");
-    nav = new QLabel("Set Navigation Commands");
+    tact = new QLabel("Set Tactical Command");
+    scan = new QLabel("Set Scanning Command");
+    nav = new QLabel("Set Navigation Command");
+    tact->setFont(font);
+    scan->setFont(font);
+    nav->setFont(font);
 
     buttonLayout = new QGridLayout();
 
-    buttonLayout->addWidget(nav,0,1);
+    buttonLayout->addWidget(nav,0,1, Qt::AlignCenter);
     buttonLayout->addWidget(moveBtn,1,1);
     /*buttonLayout->addWidget(reverse,3,1);
     buttonLayout->addWidget(port,0,2);
     buttonLayout->addWidget(starboard,0,2);*/
 
-    buttonLayout->addWidget(scan,0,2);
+    buttonLayout->addWidget(scan,0,2, Qt::AlignCenter);
     buttonLayout->addWidget(scanBtn,1,2);
     /*buttonLayout->addWidget(scanPas,4,2);*/
 
-    buttonLayout->addWidget(tact,0,3);
+    buttonLayout->addWidget(tact,0,3, Qt::AlignCenter);
     buttonLayout->addWidget(tactBtn,1,3);
     /*buttonLayout->addWidget(layMine,6,2);
     buttonLayout->addWidget(reloadTorp,7,1);
@@ -56,10 +61,10 @@ PlayerInput::PlayerInput()
 
         }
     }
-
+    buttonLayout->setRowStretch(0,-1);
     mainLayout = new QGridLayout(this);
     mainLayout->addLayout(mapLayout, 0, 0, 2, 1);
-    mainLayout->addLayout(buttonLayout, 2, 0);
+    mainLayout->addLayout(buttonLayout, 2, 0, Qt::AlignBottom);
 
     setLayout(mainLayout);
 
@@ -79,15 +84,18 @@ void PlayerInput:: handlemButton()
     setMovement->setModal(true);
     setMovement->exec();
     string command;
-    int btnSelected;
-    btnSelected=setMovement->getBtnPressed();
-    command = to_string(btnSelected);
-    cout << command << endl;
-    if (command.size()>0)
-        {
-        //game.setMove(command);
-        setPixmap();
-        }
+    int btnSelected=0;
+    if (setMovement->getBtnPressed() > 0 && setMovement->getBtnPressed()< 5)
+    {
+        btnSelected=setMovement->getBtnPressed();
+    }
+        command = to_string(btnSelected);
+        cout << command << endl;
+        if (command.size()>0)
+            {
+            //game.setMove(command);
+            setPixmap();
+            }
 
 }
 
@@ -97,16 +105,19 @@ void PlayerInput:: handlesButton()
     setScanning->setModal(true);
     setScanning->exec();
     string command;
-    int btnSelected;
-    btnSelected=setScanning->getBtnPressed();
-    command = to_string(btnSelected);
-    cout << command << endl;
-    if (command.size()>0)
+    int btnSelected=0;
+    if (setScanning->getBtnPressed() > 0 && setScanning->getBtnPressed() < 3)
     {
-
-        //game.setScan(command);
-        setPixmap();
+        btnSelected=setScanning->getBtnPressed();
     }
+        command = to_string(btnSelected);
+        cout << command << endl;
+        if (command.size()>0)
+        {
+
+            //game.setScan(command);
+            setPixmap();
+        }
 }
 
 void PlayerInput:: handletButton()
@@ -115,15 +126,18 @@ void PlayerInput:: handletButton()
     setTactical->setModal(true);
     setTactical->exec();
     string command;
-    int btnSelected;
-    btnSelected=setTactical->getBtnPressed();
-    command = to_string(btnSelected);
-    cout << command << endl;
-    if (command.size()>0)
+    int btnSelected=0;
+    if (setTactical->getBtnPressed() > 0 && setTactical->getBtnPressed() < 6)
     {
-    //game.setTact(command);
-    setPixmap();
+        btnSelected=setTactical->getBtnPressed();
     }
+        command = to_string(btnSelected);
+        cout << command << endl;
+        if (command.size()>0)
+        {
+            //game.setTact(command);
+            setPixmap();
+        }
 }
 
 void PlayerInput:: setPixmap()

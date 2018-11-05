@@ -32,6 +32,7 @@ class PlayerInput : public QWidget
         Room *currentRoom;
         int count;
         static vector<QLabel*>map;
+        QFont font;
 
     /*private slots:
         void navForward();

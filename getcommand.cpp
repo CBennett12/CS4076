@@ -11,22 +11,16 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
 
     QButtonGroup* btnGroup = new QButtonGroup(this);
     QVBoxLayout* buttonsLayout = new QVBoxLayout(this);
+    buttonsLayout->setSpacing(0);
 
     //string lastSelected="move";
     string cList [5];
-    int btnPressed;
-    btn1 = new QRadioButton(/*"Button1"*/);
-    btn2 = new QRadioButton(/*"Button2"*/);
-    btn3 = new QRadioButton(/*"Button3"*/);
-    btn4 = new QRadioButton(/*"Button4"*/);
-    btn5 = new QRadioButton(/*"Button5"*/);
-
-
-    /*btn1->show();
-    btn2->show();
-    btn3->show();
-    btn4->show();
-    btn5->show();*/
+    //int btnPressed=-1;
+    btn1 = new QRadioButton("Button1");
+    btn2 = new QRadioButton("Button2");
+    btn3 = new QRadioButton("Button3");
+    btn4 = new QRadioButton("Button4");
+    btn5 = new QRadioButton("Button5");
 
 
     if (lastSelected.compare("move")==0)
@@ -68,17 +62,23 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
         btn4->show();
         btn5->show();
     }
-    btnGroup->addButton(btn1, 0);
-    btnGroup->addButton(btn2, 1);
-    btnGroup->addButton(btn3, 2);
-    btnGroup->addButton(btn4, 3);
-    btnGroup->addButton(btn5, 4);
+    btnGroup->addButton(btn1, 1);
+    btnGroup->addButton(btn2, 2);
+    btnGroup->addButton(btn3, 3);
+    btnGroup->addButton(btn4, 4);
+    btnGroup->addButton(btn5, 5);
     buttonsLayout->addWidget(btn1);
     buttonsLayout->addWidget(btn2);
     buttonsLayout->addWidget(btn3);
     buttonsLayout->addWidget(btn4);
     buttonsLayout->addWidget(btn5);
+    buttonsLayout->addWidget(ui->buttonBox);
 
+
+    buttonsLayout->setSpacing(0);
+
+    buttonsLayout->setMargin(3);
+    setLayout(buttonsLayout);
     /*connect(btnGroup, SIGNAL(buttonClicked(QAbstractButton*)),
                                  this, SLOT(changeBtnPressed(QAbstractButton* btn)));*/
     connect(btnGroup, SIGNAL(buttonClicked(int)), this, SLOT(buttonWasClicked(int)));
