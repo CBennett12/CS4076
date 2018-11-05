@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include <QMainWindow>
-#include <QPushButton>
+#include <QRadioButton>
 #include <QCoreApplication>
 #include <QtGui>
 #include <QLabel>
@@ -23,7 +23,7 @@ class GetCommand : public QDialog
     Q_OBJECT
 
 public:
-    explicit GetCommand(QWidget *parent = nullptr);
+    explicit GetCommand(QWidget *parent = nullptr, string lastSelected="");
     ~GetCommand();
 
     string lastSelected;
@@ -38,10 +38,10 @@ public:
 private:
     Ui::GetCommand *ui;
     QButtonGroup* btnGroup;
-    QPushButton *btn1, *btn2, *btn3, *btn4, *btn5;
+    QRadioButton *btn1, *btn2, *btn3, *btn4, *btn5;
 
 private slots:
-    void changeBtnPressed(QAbstractButton* btn, int temp);
+    void buttonWasClicked(int);
 };
 
 #endif // GETCOMMAND_H

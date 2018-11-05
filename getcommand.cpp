@@ -2,7 +2,7 @@
 #include "ui_getcommand.h"
 #include "playerInput.h"
 
-GetCommand::GetCommand(QWidget *parent) :
+GetCommand::GetCommand(QWidget *parent, string lastSelected) :
     QDialog(parent),
     ui(new Ui::GetCommand)
 {
@@ -12,30 +12,22 @@ GetCommand::GetCommand(QWidget *parent) :
     QButtonGroup* btnGroup = new QButtonGroup(this);
     QVBoxLayout* buttonsLayout = new QVBoxLayout(this);
 
-    string lastSelected="";
+    //string lastSelected="move";
     string cList [5];
-    int btnSelected;
-    btn1 = new QPushButton("Button1");
-    btn2 = new QPushButton("Button2");
-    btn3 = new QPushButton("Button3");
-    btn4 = new QPushButton("Button4");
-    btn5 = new QPushButton("Button5");
+    int btnPressed;
+    btn1 = new QRadioButton(/*"Button1"*/);
+    btn2 = new QRadioButton(/*"Button2"*/);
+    btn3 = new QRadioButton(/*"Button3"*/);
+    btn4 = new QRadioButton(/*"Button4"*/);
+    btn5 = new QRadioButton(/*"Button5"*/);
 
-    btnGroup->addButton(btn1, 0);
-    btnGroup->addButton(btn2, 1);
-    btnGroup->addButton(btn3, 2);
-    btnGroup->addButton(btn4, 3);
-    btnGroup->addButton(btn5, 4);
-    buttonsLayout->addWidget(btn1);
-    buttonsLayout->addWidget(btn2);
-    buttonsLayout->addWidget(btn3);
-    buttonsLayout->addWidget(btn4);
-    buttonsLayout->addWidget(btn5);
-    btn1->show();
+
+    /*btn1->show();
     btn2->show();
     btn3->show();
     btn4->show();
-    btn5->show();
+    btn5->show();*/
+
 
     if (lastSelected.compare("move")==0)
     {
@@ -45,6 +37,10 @@ GetCommand::GetCommand(QWidget *parent) :
         btn2->setText(QString::fromStdString(cList[1]));
         btn3->setText(QString::fromStdString(cList[2]));
         btn4->setText(QString::fromStdString(cList[3]));
+        btn1->show();
+        btn2->show();
+        btn3->show();
+        btn4->show();
         btn5->hide();
     }
     else if (lastSelected.compare("scan")==0)
@@ -52,6 +48,8 @@ GetCommand::GetCommand(QWidget *parent) :
         isScan(cList);
         btn1->setText(QString::fromStdString(cList[0]));
         btn2->setText(QString::fromStdString(cList[1]));
+        btn1->show();
+        btn2->show();
         btn3->hide();
         btn4->hide();
         btn5->hide();
@@ -64,11 +62,26 @@ GetCommand::GetCommand(QWidget *parent) :
         btn3->setText(QString::fromStdString(cList[2]));
         btn4->setText(QString::fromStdString(cList[3]));
         btn5->setText(QString::fromStdString(cList[4]));
+        btn1->show();
+        btn2->show();
+        btn3->show();
+        btn4->show();
+        btn5->show();
     }
+    btnGroup->addButton(btn1, 0);
+    btnGroup->addButton(btn2, 1);
+    btnGroup->addButton(btn3, 2);
+    btnGroup->addButton(btn4, 3);
+    btnGroup->addButton(btn5, 4);
+    buttonsLayout->addWidget(btn1);
+    buttonsLayout->addWidget(btn2);
+    buttonsLayout->addWidget(btn3);
+    buttonsLayout->addWidget(btn4);
+    buttonsLayout->addWidget(btn5);
 
-
-    connect(btnGroup, SIGNAL(buttonClicked(QAbstractButton*)),
-                                 this, SLOT(changeBtnPressed(QAbstractButton* btn, int temp)));
+    /*connect(btnGroup, SIGNAL(buttonClicked(QAbstractButton*)),
+                                 this, SLOT(changeBtnPressed(QAbstractButton* btn)));*/
+    connect(btnGroup, SIGNAL(buttonClicked(int)), this, SLOT(buttonWasClicked(int)));
 
 }
 
@@ -117,11 +130,9 @@ int GetCommand:: getBtnPressed() const
     return btnPressed;
 }
 
-void GetCommand:: changeBtnPressed(QAbstractButton* btn, int temp)
+void GetCommand::buttonWasClicked(int buttonID)
 {
-       temp=btnGroup->id(btn);
-       setBtnInt(temp);
-       cout << btnPressed << endl;
+   btnPressed = buttonID;
 }
 
 void GetCommand:: setLastSelected(string temp)

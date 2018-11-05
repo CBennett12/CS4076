@@ -32,12 +32,12 @@ PlayerInput::PlayerInput()
     buttonLayout->addWidget(port,0,2);
     buttonLayout->addWidget(starboard,0,2);*/
 
-    buttonLayout->addWidget(scan,4,0);
-    buttonLayout->addWidget(scanBtn,4,1);
+    buttonLayout->addWidget(scan,0,2);
+    buttonLayout->addWidget(scanBtn,1,2);
     /*buttonLayout->addWidget(scanPas,4,2);*/
 
-    buttonLayout->addWidget(tact,6,0);
-    buttonLayout->addWidget(tactBtn,6,1);
+    buttonLayout->addWidget(tact,0,3);
+    buttonLayout->addWidget(tactBtn,1,3);
     /*buttonLayout->addWidget(layMine,6,2);
     buttonLayout->addWidget(reloadTorp,7,1);
     buttonLayout->addWidget(reloadMine,7,2);
@@ -75,15 +75,14 @@ PlayerInput::~PlayerInput()
 
 void PlayerInput:: handlemButton()
 {
-    GetCommand setMovement;
-    setMovement.setLastSelected("move");
-    setMovement.setModal(true);
-    setMovement.exec();
+    GetCommand *setMovement = new GetCommand(nullptr, "move");
+    setMovement->setModal(true);
+    setMovement->exec();
     string command;
     int btnSelected;
-    btnSelected=setMovement.getBtnPressed();
-    cout << command << endl;
+    btnSelected=setMovement->getBtnPressed();
     command = to_string(btnSelected);
+    cout << command << endl;
     if (command.size()>0)
         {
         //game.setMove(command);
@@ -94,15 +93,17 @@ void PlayerInput:: handlemButton()
 
 void PlayerInput:: handlesButton()
 {
-    GetCommand setScanning;
-    setScanning.setLastSelected("scan");
-    setScanning.setModal(true);
-    setScanning.exec();
+    GetCommand *setScanning = new GetCommand(nullptr, "scan");
+    setScanning->setModal(true);
+    setScanning->exec();
     string command;
-    //command=setScanning.getCurrentSelected();
-    cout <<command<<endl;
-    if (command.compare("")>0)
+    int btnSelected;
+    btnSelected=setScanning->getBtnPressed();
+    command = to_string(btnSelected);
+    cout << command << endl;
+    if (command.size()>0)
     {
+
         //game.setScan(command);
         setPixmap();
     }
@@ -110,13 +111,12 @@ void PlayerInput:: handlesButton()
 
 void PlayerInput:: handletButton()
 {
-    GetCommand setTactical;
-    setTactical.setLastSelected("scan");
-    setTactical.setModal(true);
-    setTactical.exec();
+    GetCommand *setTactical = new GetCommand(nullptr, "tact");
+    setTactical->setModal(true);
+    setTactical->exec();
     string command;
     int btnSelected;
-    btnSelected=setTactical.getBtnPressed();
+    btnSelected=setTactical->getBtnPressed();
     command = to_string(btnSelected);
     cout << command << endl;
     if (command.size()>0)
