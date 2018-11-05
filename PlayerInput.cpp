@@ -13,6 +13,7 @@ PlayerInput::PlayerInput()
     moveBtn = new QPushButton("Set Movement Command");
     scanBtn = new QPushButton("Set Scanning Command");
     tactBtn = new QPushButton("Set Tactical Command");
+
     /*starboard = new QPushButton("Starboard");
     scanAct = new QPushButton("Active Scanning");
     scanPas = new QPushButton("Passive Scanning");
@@ -22,12 +23,14 @@ PlayerInput::PlayerInput()
     reloadMine = new QPushButton("Reload Mine");
     salvage = new QPushButton("Salvage");*/
 
-    tact = new QLabel("Set Tactical Command");
-    scan = new QLabel("Set Scanning Command");
-    nav = new QLabel("Set Navigation Command");
+    tact = new QLabel();
+    scan = new QLabel();
+    nav = new QLabel();
     tact->setFont(font);
     scan->setFont(font);
     nav->setFont(font);
+    changePixmap();
+
 
     buttonLayout = new QGridLayout();
 
@@ -94,7 +97,7 @@ void PlayerInput:: handlemButton()
         if (command.size()>0)
             {
             //game.setMove(command);
-            setPixmap();
+            changePixmap();
             }
 
 }
@@ -116,7 +119,7 @@ void PlayerInput:: handlesButton()
         {
 
             //game.setScan(command);
-            setPixmap();
+            changePixmap();
         }
 }
 
@@ -136,28 +139,28 @@ void PlayerInput:: handletButton()
         if (command.size()>0)
         {
             //game.setTact(command);
-            setPixmap();
+            changePixmap();
         }
 }
 
-void PlayerInput:: setPixmap()
+void PlayerInput:: changePixmap()
 {
-    /*if (!(game.isMoveSet()))
+    if (!(/*game.isMoveSet()*/0))
     {
-        ui->lGLabel->hide();
+        nav->setText("Navigation Command Not Set");
     }
-    else ui->lGLabel->show();
-    if (!(game.isScanSet()))
+    else  nav->setText("Navigation Command Set");
+    if (!(/*game.isScanSet()*/0))
     {
-        ui->mGLabel->hide();
+        scan->setText("Scanning Command Not Set");
     }
-    else ui->mGLabel->show();
-    if (!(game.isTactSet()))
+    else scan->setText("Scanning Command Set");
+    if (!(/*game.isTactSet()*/0))
     {
-       ui->rGLabel->hide();
+       tact->setText("Tactical Command Not Set");
     }
-    else ui->rGLabel->show();
-    */
+    else tact->setText("Tactical Command Set");
+
 
 }
 

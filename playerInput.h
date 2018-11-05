@@ -33,6 +33,8 @@ class PlayerInput : public QWidget
         int count;
         static vector<QLabel*>map;
         QFont font;
+        QPixmap rPic;
+        QPixmap gPic;
 
     /*private slots:
         void navForward();
@@ -51,6 +53,7 @@ private slots:
     void handlemButton();
     void handlesButton();
     void handletButton();
-    void setPixmap();
+
+    void changePixmap();
 };
 #endif // PlayerInput_H
