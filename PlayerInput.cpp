@@ -57,10 +57,10 @@ PlayerInput::PlayerInput()
     buttonLayout->addWidget(reloadMine,7,2);
     buttonLayout->addWidget(salvage,7,3);*/
 
-    buttonLayout->addWidget(execute,1,2, Qt::AlignCenter);
-    buttonLayout->addWidget(executeBtn,2,2);
+    //buttonLayout->addWidget(execute,1,2, Qt::AlignCenter);
+    buttonLayout->addWidget(executeBtn,2, 2, 2, 1);
 
-    buttonLayout->addWidget(help,3,2, Qt::AlignCenter);
+    //buttonLayout->addWidget(help,3,2, Qt::AlignCenter);
     buttonLayout->addWidget(helpBtn,4,2);
 
     mapLayout = new QGridLayout();
@@ -117,7 +117,7 @@ PlayerInput::PlayerInput()
 
     connect(moveBtn, SIGNAL (released()), this, SLOT (handlemButton()));
     connect(scanBtn, SIGNAL (released()), this, SLOT (handlesButton()));
-    //connect(tactBtn, SIGNAL (released()), this, SLOT (handletButton()));
+    connect(tactBtn, SIGNAL (released()), this, SLOT (handletButton()));
     //connect(helpBtn, SIGNAL (released()), this, SLOT (handlehButton()));
 }
 
