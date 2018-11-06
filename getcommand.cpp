@@ -79,14 +79,9 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
 
     buttonsLayout->setMargin(3);
     setLayout(buttonsLayout);
-<<<<<<< HEAD
-    /*connect(btnGroup, SIGNAL(buttonClicked(QAbstractButton*)),
-                                 this, SLOT(changeBtnPressed(QAbstractButton* btn)));*/
-=======
+
 
     connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(cancelPressed()));
-
->>>>>>> master
     connect(btnGroup, SIGNAL(buttonClicked(int)), this, SLOT(buttonWasClicked(int)));
 
 }
@@ -100,13 +95,8 @@ void GetCommand:: isMove(string cList[5])
 {
     cList[0]="Go Forward";
     cList[1]="Go Backward";
-<<<<<<< HEAD
     cList[2]="Turn Port";
     cList[3]="Turn Starboard";
-=======
-    cList[2]="Go Port";
-    cList[3]="Go Starboard";
->>>>>>> master
     cList[4]="";
 
 }
@@ -136,14 +126,11 @@ void GetCommand:: setBtnInt(int temp)
     btnPressed = temp;
 }
 
-<<<<<<< HEAD
-=======
 void GetCommand:: cancelPressed()
 {
     btnPressed = 0;
 }
 
->>>>>>> master
 int GetCommand:: getBtnPressed() const
 {
     return btnPressed;
