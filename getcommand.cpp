@@ -79,8 +79,9 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
 
     buttonsLayout->setMargin(3);
     setLayout(buttonsLayout);
-    /*connect(btnGroup, SIGNAL(buttonClicked(QAbstractButton*)),
-                                 this, SLOT(changeBtnPressed(QAbstractButton* btn)));*/
+
+    connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(cancelPressed()));
+
     connect(btnGroup, SIGNAL(buttonClicked(int)), this, SLOT(buttonWasClicked(int)));
 
 }
@@ -123,6 +124,11 @@ void GetCommand:: isTact(string cList[5])
 void GetCommand:: setBtnInt(int temp)
 {
     btnPressed = temp;
+}
+
+void GetCommand:: cancelPressed()
+{
+    btnPressed = 0;
 }
 
 int GetCommand:: getBtnPressed() const

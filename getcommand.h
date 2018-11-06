@@ -35,6 +35,7 @@ public:
     void setBtnInt(int temp);
     void setLastSelected(string temp);
 
+
 private:
     Ui::GetCommand *ui;
     QButtonGroup* btnGroup;
@@ -42,6 +43,7 @@ private:
 
 private slots:
     void buttonWasClicked(int);
+    void cancelPressed();
 };
 
 #endif // GETCOMMAND_H

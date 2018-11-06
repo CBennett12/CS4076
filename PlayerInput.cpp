@@ -8,7 +8,8 @@ PlayerInput::PlayerInput()
     size = 10; //global variable
     count = 0;
     QFont font;
-    font.setPointSize(12);
+    font.setPointSize(10);
+    
     cout << "here" << endl;
     moveBtn = new QPushButton("Set Movement Command");
     scanBtn = new QPushButton("Set Scanning Command");
