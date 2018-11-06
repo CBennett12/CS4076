@@ -48,7 +48,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     res.qrc
+<<<<<<< HEAD
 
 DISTFILES += \
     green.png \
     red.png
+=======
+>>>>>>> master

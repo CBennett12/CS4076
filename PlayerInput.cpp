@@ -8,13 +8,21 @@ PlayerInput::PlayerInput()
     size = 10; //global variable
     count = 0;
     QFont font;
+<<<<<<< HEAD
     font.setPointSize(12);
+=======
+    font.setPointSize(10);
+    
+>>>>>>> master
     cout << "here" << endl;
     moveBtn = new QPushButton("Set Movement Command");
     scanBtn = new QPushButton("Set Scanning Command");
     tactBtn = new QPushButton("Set Tactical Command");
+<<<<<<< HEAD
     helpBtn = new QPushButton("How To Play the Game");
     executeBtn = new QPushButton("Execute Commands");
+=======
+>>>>>>> master
 
     /*starboard = new QPushButton("Starboard");
     scanAct = new QPushButton("Active Scanning");
@@ -28,6 +36,7 @@ PlayerInput::PlayerInput()
     tact = new QLabel();
     scan = new QLabel();
     nav = new QLabel();
+<<<<<<< HEAD
     help = new QLabel();
     execute = new QLabel();
     tact->setFont(font);
@@ -35,6 +44,11 @@ PlayerInput::PlayerInput()
     nav->setFont(font);
     help->setFont(font);
     execute->setFont(font);
+=======
+    tact->setFont(font);
+    scan->setFont(font);
+    nav->setFont(font);
+>>>>>>> master
     changePixmap();
 
 
@@ -56,12 +70,15 @@ PlayerInput::PlayerInput()
     buttonLayout->addWidget(reloadTorp,7,1);
     buttonLayout->addWidget(reloadMine,7,2);
     buttonLayout->addWidget(salvage,7,3);*/
+<<<<<<< HEAD
 
     buttonLayout->addWidget(execute,1,2, Qt::AlignCenter);
     buttonLayout->addWidget(executeBtn,2,2);
 
     buttonLayout->addWidget(help,3,2, Qt::AlignCenter);
     buttonLayout->addWidget(helpBtn,4,2);
+=======
+>>>>>>> master
 
     mapLayout = new QGridLayout();
     unsigned int index = 0;
@@ -76,6 +93,7 @@ PlayerInput::PlayerInput()
 
         }
     }
+<<<<<<< HEAD
 
     infoLayout = new QGridLayout();
 
@@ -112,13 +130,22 @@ PlayerInput::PlayerInput()
     mainLayout->addLayout(mapLayout, 0, 0, 2, 1);
     mainLayout->addLayout(infoLayout, 2, 0, Qt::AlignCenter);
     mainLayout->addLayout(buttonLayout, 4, 0, Qt::AlignBottom);
+=======
+    buttonLayout->setRowStretch(0,-1);
+    mainLayout = new QGridLayout(this);
+    mainLayout->addLayout(mapLayout, 0, 0, 2, 1);
+    mainLayout->addLayout(buttonLayout, 2, 0, Qt::AlignBottom);
+>>>>>>> master
 
     setLayout(mainLayout);
 
     connect(moveBtn, SIGNAL (released()), this, SLOT (handlemButton()));
     connect(scanBtn, SIGNAL (released()), this, SLOT (handlesButton()));
     connect(tactBtn, SIGNAL (released()), this, SLOT (handletButton()));
+<<<<<<< HEAD
     connect(helpBtn, SIGNAL (released()), this, SLOT (handlehButton()));
+=======
+>>>>>>> master
 }
 
 PlayerInput::~PlayerInput()
@@ -188,6 +215,7 @@ void PlayerInput:: handletButton()
         }
 }
 
+<<<<<<< HEAD
 /*
 void PlayerInput:: handlehButton()
 {
@@ -196,6 +224,8 @@ void PlayerInput:: handlehButton()
 }
 */
 
+=======
+>>>>>>> master
 void PlayerInput:: changePixmap()
 {
     if (!(/*game.isMoveSet()*/0))

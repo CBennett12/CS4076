@@ -26,9 +26,15 @@ class PlayerInput : public QWidget
        int size; //Global Variable
 
     private:
+<<<<<<< HEAD
         QPushButton *moveBtn, *scanBtn, *tactBtn, *helpBtn, *executeBtn;
         QLabel *tact, *scan, *nav, *temp, *help, *pHealth, *pTorp, *pMine, *pCode, *execute, *cHealth, *cTorp, *cMine, *cCode;
         QGridLayout *mainLayout, *buttonLayout, *mapLayout, *infoLayout;
+=======
+        QPushButton *moveBtn, *scanBtn, *tactBtn;
+        QLabel *tact, *scan, *nav, *temp;
+        QGridLayout *mainLayout, *buttonLayout, *mapLayout;
+>>>>>>> master
         Room *currentRoom;
         int count, playerHealth, playerTorpedos, playerMines, playerCodes;
         static vector<QLabel*>map;
@@ -53,8 +59,11 @@ private slots:
     void handlemButton();
     void handlesButton();
     void handletButton();
+<<<<<<< HEAD
     //void handlehButton();
     //void handleeButton();
+=======
+>>>>>>> master
 
     void changePixmap();
 };
