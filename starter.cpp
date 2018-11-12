@@ -1,7 +1,7 @@
 #include <QApplication>
 #include <iostream>
 using namespace std;
-#include "MainWindow.h"
+#include "mainwindow.h"
 #include "playerInput.h"
 
 int main(int argc, char **argv)
