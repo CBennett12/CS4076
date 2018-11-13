@@ -11,6 +11,7 @@
 #include <iostream>
 #include <vector>
 #include "Room.h"
+#include "starter.h"
 
 using namespace std;
 
@@ -30,7 +31,7 @@ class PlayerInput : public QWidget
         QLabel *tact, *scan, *nav, *temp, *help, *pHealth, *pTorp, *pMine, *pCode, *execute, *cHealth, *cTorp, *cMine, *cCode;
         QGridLayout *mainLayout, *buttonLayout, *mapLayout, *infoLayout;
 
-        Room *currentRoom;
+        Room *currentRoom, *tempRoom;
         int count, playerHealth, playerTorpedos, playerMines, playerCodes;
         static vector<QLabel*>map;
         QFont font;

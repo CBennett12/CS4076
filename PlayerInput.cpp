@@ -5,8 +5,6 @@ std::vector<QLabel*> PlayerInput::map;
 
 PlayerInput::PlayerInput()
 {
-    size = 10; //global variable
-    count = 0;
     QFont font;
     font.setPointSize(10);
     
@@ -64,16 +62,18 @@ PlayerInput::PlayerInput()
     buttonLayout->addWidget(helpBtn,4,2);
 
     mapLayout = new QGridLayout();
-    unsigned int index = 0;
-    for(int i = 0; i < size; i++)
-    {
-        for(int j = 0; j < size; j++)
-        {
-            map.push_back(new QLabel(QString::fromStdString(to_string(index))));
-            mapLayout->addWidget(map.at(index), i, j);
-            cout << index << endl;
-            index++;
+    //unsigned int index = 0;
 
+
+    for(unsigned int i = 0; i < global; i++)
+    {
+        for(unsigned int j = 0; j < global; j++)
+        {
+            map.push_back(new QLabel(QString::fromStdString(to_string(i*10 + j))));
+            mapLayout->addWidget(map.at(i*10 + j), i, j);
+            cout << i*10 + j << endl;
+            //index++;
+            Room tempRoom(i*10 + j);
         }
     }
 

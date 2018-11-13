@@ -29,13 +29,18 @@ SOURCES += \
     playerinput.cpp \
     room.cpp \
     starter.cpp \
-    getcommand.cpp
+    getcommand.cpp \
+    ship.cpp \
+    uno.cpp
 
 HEADERS += \
         mainwindow.h \
     playerinput.h \
     room.h \
-    getcommand.h
+    getcommand.h \
+    ship.h \
+    starter.h \
+    uno.h
 
 FORMS += \
         mainwindow.ui \
