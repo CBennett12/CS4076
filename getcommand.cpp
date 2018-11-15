@@ -12,7 +12,6 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
     QButtonGroup* btnGroup = new QButtonGroup(this);
     QVBoxLayout* buttonsLayout = new QVBoxLayout(this);
     buttonsLayout->setSpacing(0);
-
     //string lastSelected="move";
     string cList [5];
     //int btnPressed=-1;
