@@ -7,7 +7,7 @@ class Ship
 public:
     Ship();
 
-    //operator overloading for adding 1 ship to another. In this case, when salvaging an enemy ship, it will max torp, mine, health and +1 to enigma code
+    void operator+(Ship s1, Ship s2);S
 };
 
 #endif // SHIP_H

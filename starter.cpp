@@ -3,10 +3,13 @@
 using namespace std;
 #include "mainwindow.h"
 #include "playerInput.h"
+#include "starter.h"
+
+extern const unsigned int global = 10; //Here you go Chris. We found a good use for it. You'll see.
 
 int main(int argc, char **argv)
 {
-    const unsigned int global = 10; //Here you go Chris. We found a good use for it. You'll see.
+
 
     QApplication a(argc, argv);
     MainWindow *window = new MainWindow();

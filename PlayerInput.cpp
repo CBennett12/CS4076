@@ -1,5 +1,6 @@
 #include "playerinput.h"
 #include "getcommand.h"
+#include "starter.h"
 
 std::vector<QLabel*> PlayerInput::map;
 
