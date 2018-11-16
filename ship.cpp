@@ -13,3 +13,12 @@ Ship::Ship()
 {
 
 }
+void Ship:: operator+( Ship sT)
+{
+/*     this->health=5;
+       this->mines=5;
+       this->torpedos=5;
+       this->enigmaPieces++;
+
+*/
+}

@@ -26,6 +26,7 @@ class PlayerInput : public QWidget
        string getCurrentRoom();
        int size; //Global Variable
 
+
            bool moveSet;
            bool scanSet;
            bool tactSet;
@@ -38,9 +39,10 @@ class PlayerInput : public QWidget
     private:
         QPushButton *moveBtn, *scanBtn, *tactBtn, *helpBtn, *executeBtn;
         QLabel *tact, *scan, *nav, *temp, *help, *pHealth, *pTorp, *pMine, *pCode, *execute, *cHealth, *cTorp, *cMine, *cCode;
+        int count, playerHealth, playerTorpedos, playerMines, playerCodes, maxHealth, maxTorpedos, maxMines, piecesNeeded;
         QGridLayout *mainLayout, *buttonLayout, *mapLayout, *infoLayout;
         Room *currentRoom;
-        int count, playerHealth, playerTorpedos, playerMines, playerCodes, maxHealth, maxTorpedos, maxMines, piecesNeeded;
+
         static vector<QLabel*>map;
         QFont font;
         QPixmap rPic;
@@ -48,6 +50,7 @@ class PlayerInput : public QWidget
         void useScan(string command);
         void useAttack(string command);
         void useMove(string command);
+        void checkGameOver();
 
 
 

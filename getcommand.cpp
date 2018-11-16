@@ -7,8 +7,10 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
     ui(new Ui::GetCommand)
 {
     ui->setupUi(this);
-    this->setWindowTitle("Get Command");
+    string title ="Get " + lastSelected + " Command";
+    this->setWindowTitle(QString::fromStdString(title));
 
+   //Create a button group for the different commands
     QButtonGroup* btnGroup = new QButtonGroup(this);
     QVBoxLayout* buttonsLayout = new QVBoxLayout(this);
     buttonsLayout->setSpacing(0);
@@ -21,8 +23,8 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
     btn4 = new QRadioButton("Button4");
     btn5 = new QRadioButton("Button5");
 
-
-    if (lastSelected.compare("move")==0)
+    //If you are setting movement command, set 4 buttons, hide 1
+    if (lastSelected.compare("Movement")==0)
     {
         isMove(cList);
 
@@ -36,7 +38,8 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
         btn4->show();
         btn5->hide();
     }
-    else if (lastSelected.compare("scan")==0)
+    //If you are setting scanning command, set 2 buttons, hide 3
+    else if (lastSelected.compare("Scanning")==0)
     {
         isScan(cList);
         btn1->setText(QString::fromStdString(cList[0]));
@@ -47,7 +50,8 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
         btn4->hide();
         btn5->hide();
     }
-    else if (lastSelected.compare("tact")==0)
+    //If you are setting tactical command, set all 5 buttons
+    else if (lastSelected.compare("Tactical")==0)
     {
         isTact(cList);
         btn1->setText(QString::fromStdString(cList[0]));
@@ -61,6 +65,7 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
         btn4->show();
         btn5->show();
     }
+    //Add the 5 buttons to the button group, and the button layout
     btnGroup->addButton(btn1, 1);
     btnGroup->addButton(btn2, 2);
     btnGroup->addButton(btn3, 3);
@@ -79,7 +84,7 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
     buttonsLayout->setMargin(3);
     setLayout(buttonsLayout);
 
-
+    //Slots for if ok button or cancel button is pressed
     connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(cancelPressed()));
     connect(btnGroup, SIGNAL(buttonClicked(int)), this, SLOT(buttonWasClicked(int)));
 
@@ -90,6 +95,7 @@ GetCommand::~GetCommand()
     delete ui;
 }
 
+//If selecting movement command, set list of commands to the movement list
 void GetCommand:: isMove(string cList[5])
 {
     cList[0]="Go Forward";
@@ -100,6 +106,7 @@ void GetCommand:: isMove(string cList[5])
 
 }
 
+//If selecting Scanning command, set list of commands to the scanning list
 void GetCommand:: isScan(string cList[5])
 {
     cList[0]="Passive Scanning";
@@ -110,6 +117,8 @@ void GetCommand:: isScan(string cList[5])
 
 }
 
+
+//If selecting tactical command, set list of commands to the tactical list
 void GetCommand:: isTact(string cList[5])
 {
     cList[0]="Reload Torpedo";
@@ -120,11 +129,13 @@ void GetCommand:: isTact(string cList[5])
 
 }
 
+//save the index of the button pressed
 void GetCommand:: setBtnInt(int temp)
 {
     btnPressed = temp;
 }
 
+//Cancel button pressed, returning 0, previous command saved
 void GetCommand:: cancelPressed()
 {
     btnPressed = 0;
@@ -135,11 +146,13 @@ int GetCommand:: getBtnPressed() const
     return btnPressed;
 }
 
+
 void GetCommand::buttonWasClicked(int buttonID)
 {
    btnPressed = buttonID;
 }
 
+//Sets the type of commadn we are setting
 void GetCommand:: setLastSelected(string temp)
 {
     lastSelected=temp;
