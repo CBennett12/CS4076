@@ -12,6 +12,7 @@
 #include <vector>
 #include "Room.h"
 #include "starter.h"
+#include "ship.h"
 
 using namespace std;
 
@@ -22,7 +23,7 @@ class PlayerInput : public QWidget
     public:
        explicit PlayerInput();
        ~PlayerInput();
-       void setRoom(Room holder);
+       void setRoom(Room);
        string getCurrentRoom();
        int size; //Global Variable
 
@@ -35,6 +36,7 @@ class PlayerInput : public QWidget
            void setScan(string command);
            void setTact(string command);
            void resetCommands();
+           void update();
 
     private:
         QPushButton *moveBtn, *scanBtn, *tactBtn, *helpBtn, *executeBtn;
@@ -51,8 +53,9 @@ class PlayerInput : public QWidget
         void useAttack(string command);
         void useMove(string command);
         void checkGameOver();
-
-
+        void updateMap(Room[]);
+        void updateValues(Ship[]);
+        void updateUI();
 
     /*private slots:
         void navForward();

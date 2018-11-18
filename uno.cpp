@@ -1,6 +1,8 @@
 #include "uno.h"
 
-uno::uno()
+uno::~uno()
 {
-
+    ;
 }
+
+

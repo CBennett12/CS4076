@@ -31,7 +31,11 @@ SOURCES += \
     starter.cpp \
     getcommand.cpp \
     ship.cpp \
-    uno.cpp
+    uno.cpp \
+    game.cpp \
+    player.cpp \
+    enemy.cpp \
+    moveable.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,7 +44,11 @@ HEADERS += \
     getcommand.h \
     ship.h \
     starter.h \
-    uno.h
+    uno.h \
+    game.h \
+    player.h \
+    enemy.h \
+    moveable.h
 
 FORMS += \
         mainwindow.ui \

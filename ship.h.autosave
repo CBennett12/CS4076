@@ -6,8 +6,8 @@
 class Ship : public Uno
 {
 public:
-    virtual Ship();
-    virtual ~Ship();
+    Ship();
+    ~Ship();
 
 protected:
     int torpedo, mine, health;

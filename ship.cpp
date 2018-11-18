@@ -13,12 +13,20 @@ Ship::Ship()
 {
 
 }
-void Ship:: operator+( Ship sT)
-{
-/*     this->health=5;
-       this->mines=5;
-       this->torpedos=5;
-       this->enigmaPieces++;
 
-*/
+Ship::~Ship()
+{
+
+}
+
+void Ship::shoot()
+{
+    torpedo--;
+    //call constructor on torpedo using current heading of ship
+}
+
+void Ship::layMine()
+{
+    mine--;
+    //call constructor on mine in current room
 }

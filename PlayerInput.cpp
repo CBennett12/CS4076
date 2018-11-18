@@ -19,13 +19,10 @@ PlayerInput::PlayerInput()
      **/
 
     //initialise variables for gameplay
-    maxHealth = 5;
-    maxTorpedos = 5;
-    maxMines = 5;
-    piecesNeeded = 5;
-    playerHealth = 5;
-    playerTorpedos = 5;
-    playerMines = 3;
+    playerHealth = maxHealth = 5;
+    playerMines = maxTorpedos = 5;
+    playerMines = maxMines = 5;
+    piecesNeeded = global/2;
     playerCodes = 0;
 
     //add buttons to bottom of the screen
@@ -75,13 +72,12 @@ PlayerInput::PlayerInput()
 
     mapLayout = new QGridLayout();
     unsigned int index = 0;
-
-
     for(unsigned int i = 0; i < global; i++)
     {
         for(unsigned int j = 0; j < global; j++)
         {
             map.push_back(new QLabel(QString::fromStdString(to_string(index))));
+            //map.push_back(new QLabel("?"));
             mapLayout->addWidget(map.at(index), i, j);
             //cout << index << endl;
             index++;
@@ -433,20 +429,20 @@ void PlayerInput::useScan(string command)
 void PlayerInput::checkGameOver()
 {
     //Victory
-if (playerCodes == piecesNeeded)
-{
-    QMessageBox messageBox(this);
-    messageBox.about(this, "Congradulation", "All pieces collected, plan successful\n \\(^o^)/  \\(^0^)/  \\(^o^)/  \\(^0^)/");
-    this->setDisabled(true);
-    this->close();
-}
+    if (playerCodes == piecesNeeded)
+    {
+        QMessageBox messageBox(this);
+        messageBox.about(this, "Congradulation", "All pieces collected, plan successful\n \\(^o^)/  \\(^0^)/  \\(^o^)/  \\(^0^)/");
+        this->setDisabled(true);
+        this->close();
+    }
 
-//Defeat
-if (playerHealth == 0)
-{
-QMessageBox messageBox(this);
-messageBox.about(this, "Comiseration", "Submarine has been compromised, plan unsuccessful\n /(XoX)\\");
-this->setDisabled(true);
-this->close();
-}
+    //Defeat
+    if (playerHealth == 0)
+    {
+        QMessageBox messageBox(this);
+        messageBox.about(this, "Comiseration", "Submarine has been compromised, plan unsuccessful\n /(XoX)\\");
+        this->setDisabled(true);
+        this->close();
+    }
 }
