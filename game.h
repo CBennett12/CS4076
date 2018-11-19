@@ -24,8 +24,8 @@ public:
 
 private:
     void spawnPlayer();
-    //void spawnEnemies(Enemy[]);
-    void makeMap(Room[]);
+    void spawnEnemies(Enemy[]);
+    void makeMap(Room* []);
     bool moveSet;
     bool scanSet;
     bool tactSet;

@@ -7,7 +7,7 @@
 Game::Game()
 {
     Room* pMap = new Room[globalSquared];
-    makeMap(pMap);
+    //makeMap(pMap);
     string commands[3];
     /*
      * commands[0] = moveCommand
@@ -26,12 +26,12 @@ Game::Game()
 
 }
 
-void Game::spawnEnemies(Enemy [] arr)
+void Game::spawnEnemies(Enemy arr [])
 {
     for(int i = 0; i < global; i++)
     {
-        Enemy tempEnemy = new Enemy();
-        arr[i] << tempEnemy;
+        Enemy tempEnemy = new uno();
+        arr[i] = tempEnemy;
     }
 }
 
@@ -40,7 +40,7 @@ void Game::spawnPlayer()
 
 }
 
-void Game::makeMap(Room* pMap)
+void Game::makeMap(Room* pMap[])
 {
     for(unsigned int i = 0; i < globalSquared; i++)
         pMap[i] = new Room(i);
