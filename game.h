@@ -9,16 +9,34 @@ public:
     Game();
     ~Game();
     void turnUpdate();
+    int getPH() const;
+    int getTorps() const;
+    int getPN() const;
+    int getMines() const;
+    bool getMove() const;
+    bool getScan() const;
+    bool getTact() const;
+    void useScan();
+    void useAttack();
+    void useMove();
+    void setCommand(string command, int index);
+    void resetCommands();
 
 private:
     void spawnPlayer();
-    void spawnEnemies(Enemy[]);
+    //void spawnEnemies(Enemy[]);
     void makeMap(Room[]);
-    void gameLoop();
+    bool moveSet;
+    bool scanSet;
+    bool tactSet;
+    string commands[3];
+    int playerHealth, playerTorpedos, playerMines, playerCodes, maxHealth, maxTorpedos, maxMines, piecesNeeded;
 
-    Enemy tempEnemy;
+    //Enemy tempEnemy;
     Room* map;
     Room temp;
+
+
 
 };
 

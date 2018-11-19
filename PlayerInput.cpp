@@ -1,6 +1,7 @@
 #include "playerinput.h"
 #include "getcommand.h"
 #include "starter.h"
+#include "game.h"
 
 std::vector<QLabel*> PlayerInput::map;
 
@@ -9,21 +10,12 @@ PlayerInput::PlayerInput()
     //create font size for the command labels (makes the labels fit and look nicer)
     QFont font;
     font.setPointSize(10);
-    
+    Game* game = new Game();
     //string array for the commands
-    string commands[3];
-    /*
-     * commands[0] = moveCommand
-     * commands[1] = scanCommand
-     * commands[2] = tacticalComand
-     **/
+
 
     //initialise variables for gameplay
-    playerHealth = maxHealth = 5;
-    playerMines = maxTorpedos = 5;
-    playerMines = maxMines = 5;
-    piecesNeeded = global/2;
-    playerCodes = 0;
+
 
     //add buttons to bottom of the screen
     moveBtn = new QPushButton("Set Movement Command");
@@ -78,7 +70,7 @@ PlayerInput::PlayerInput()
         {
             map.push_back(new QLabel(QString::fromStdString(to_string(index))));
             //map.push_back(new QLabel("?"));
-            mapLayout->addWidget(map.at(index), i, j);
+            mapLayout->addWidget(map.at(index),(static_cast<int>(i)),(static_cast<int>(j)));
             //cout << index << endl;
             index++;
         }
@@ -91,10 +83,10 @@ PlayerInput::PlayerInput()
     pTorp = new QLabel("Remaining torpedos: ");
     pMine = new QLabel("Remaining mines: ");
     pCode = new QLabel("Pieces of Enigma Code missing: ");
-    cHealth = new QLabel(QString::number(*&playerHealth));
-    cTorp = new QLabel(QString::number(playerTorpedos));
-    cMine = new QLabel(QString::number(playerMines));
-    cCode = new QLabel(QString::number((piecesNeeded - playerCodes)));
+    cHealth = new QLabel(QString::number(game->getPH()));
+    cTorp = new QLabel(QString::number(game->getTorps()));
+    cMine = new QLabel(QString::number(game->getMines()));
+    cCode = new QLabel(QString::number((game->getPN())));
 
     pHealth->setFont(font);
     pTorp->setFont(font);
@@ -130,9 +122,7 @@ PlayerInput::PlayerInput()
     setLayout(mainLayout);
 
     //Set the booleans for each command to false
-    moveSet = false;
-    scanSet = false;
-    tactSet = false;
+
     changePixmap();
 
     //slots for each command button
@@ -168,7 +158,7 @@ void PlayerInput:: handlemButton()
         //If something has been saved in command, set movement command and update movement label
         if (command.size()>0)
             {
-            setMove(command);
+            game->setCommand(command,0);
             changePixmap();
             }
     }
@@ -193,7 +183,7 @@ void PlayerInput:: handlesButton()
         if (command.size()>0)
         {
 
-            setScan(command);
+            game->setCommand(command, 1);
             changePixmap();
         }
     }
@@ -218,7 +208,7 @@ void PlayerInput:: handletButton()
        //if something has been saved to command, add it to the array and update tactical label
         if (command.size()>0)
         {
-            setTact(command);
+            game->setCommand(command, 2);
             changePixmap();
         }
     }
@@ -230,24 +220,24 @@ void PlayerInput:: handleExButton()
 {
 
     //if each command has been set, execute them
-    if ((moveSet) || (scanSet) || (tactSet))
+    if ((game->getMove()) || (game->getScan()) || (game->getTact()))
     {
         QMessageBox messageBox(this);
         messageBox.about(this, "Orders Received", "Executing commands");
-        if (moveSet)
+        if (game->getMove())
         {
-            useMove(commands[0]);
+            game->useMove();
         }
-        if (scanSet)
+        if (game->getScan())
         {
-         useScan(commands[1]);
+         game->useScan();
         }
-        if (tactSet)
+        if (game->getTact())
         {
-            useAttack(commands[2]);
+            game->useAttack();
         }
     //When all commands have been executed, reset them and update the labels
-        resetCommands();
+        game->resetCommands();
         changePixmap();
     }
     else
@@ -269,7 +259,7 @@ void PlayerInput:: handlehButton()
 void PlayerInput:: changePixmap()
 {
     //If each command is or isn't set, set the labels accordingly
-    if (!(moveSet))
+    if (!(game->getMove()))
     {
         nav->setText("Navigation Command Not Set");
     }
@@ -277,7 +267,7 @@ void PlayerInput:: changePixmap()
     {
         nav->setText("Navigation Command Set");
     }
-    if (!(scanSet))
+    if (!(game->getScan()))
     {
         scan->setText("Scanning Command Not Set");
     }
@@ -285,7 +275,7 @@ void PlayerInput:: changePixmap()
     {
         scan->setText("Scanning Command Set");
     }
-    if (!(tactSet))
+    if (!(game->getTact()))
     {
        tact->setText("Tactical Command Not Set");
     }
@@ -294,142 +284,18 @@ void PlayerInput:: changePixmap()
         tact->setText("Tactical Command Set");
     }
     //Set labels for health, torpedos, mines and enigma codes
-    cHealth->setText(QString::number(playerHealth));
-    cTorp->setText(QString::number(playerTorpedos));
-    cMine->setText(QString::number(playerMines));
-    cCode->setText(QString::number((piecesNeeded - playerCodes)));
-    checkGameOver();
+    cHealth->setText(QString::number(game->getPH()));
+    cTorp->setText(QString::number(game->getTorps()));
+    cMine->setText(QString::number(game->getMines()));
+    cCode->setText(QString::number((game->getPN())));
+    checkGameOver(game);
 
 }
 
-//the next 3 functions all set the command inputted to the array, and set their relevant booleans
-void PlayerInput::setMove(string command)
-{
-    commands[0]=command;
-    moveSet=true;
-}
-
-void PlayerInput::setScan(string command)
-{
-    commands[1]=command;
-    scanSet=true;
-}
-
-void PlayerInput::setTact(string command)
-{
-    commands[2]=command;
-    tactSet=true;
-}
-
-//A pretty Ronseal function, resets the commands array and booleans
-void PlayerInput::resetCommands()
-{
-    for (int i=0; i<(3);i++)
-     {
-         commands[i]="";
-     }
-     moveSet=false;
-     scanSet=false;
-     tactSet=false;
-}
-//Handler for the movement command
-void PlayerInput::useMove(string command)
-{
-    if (command.compare("1")==0)
-    {
-       //Go Forward
-    }
-    else
-        if (command.compare("2")==0)
-        {
-           //Go Backwards
-        }
-        else
-            if (command.compare("3")==0)
-            {
-                //Turn Port
-            }
-            else
-                if (command.compare("4")==0)
-                {
-                    //Turn Starboard
-                }
-}
-
-//Handler for the tactical command
-void PlayerInput::useAttack(string command)
-{
-    if (command.compare("1")==0)
-    {
-       //Reload Torpedo
-        if (playerTorpedos != maxTorpedos)
-        {
-            playerTorpedos++;
-        }
-    }
-    else
-        if (command.compare("2")==0)
-        {
-           //Reload Mine
-            if (maxMines != playerMines)
-            {
-                playerMines++;
-                cMine->setText(QString::number(playerMines));
-            }
-        }
-        else
-            if (command.compare("3")==0)
-            {
-                //Lay Mine
-                if (playerMines != 0)
-                {
-                    playerMines--;
-                }
-            }
-            else
-                //Fire Torpedos
-                if (command.compare("4")==0)
-                {
-                    if (playerTorpedos != 0)
-                    {
-                        playerTorpedos--;
-                    }
-                }
-                else
-                    if (command.compare("5")==0)
-                    {
-                        //Salvage Wreckage
-
-                        playerCodes++;
-
-                        /*
-                         * if (room has a destroyed ship)
-                         * {
-                         *  playership=playerShip+destroyedShip;
-                         * }
-                         */
-                    }
-}
-
-//handler for the scanning command
-void PlayerInput::useScan(string command)
-{
-    if (command.compare("1")==0)
-    {
-       //Passive Scan
-    }
-    else
-        if (command.compare("2")==0)
-        {
-           //Active Scan
-        }
-}
-
-//checks if the game is over, either successfully or unsuccessfully
-void PlayerInput::checkGameOver()
+void PlayerInput::checkGameOver(Game* game)
 {
     //Victory
-    if (playerCodes == piecesNeeded)
+    if (game->getPN() == 0)
     {
         QMessageBox messageBox(this);
         messageBox.about(this, "Congradulation", "All pieces collected, plan successful\n \\(^o^)/  \\(^0^)/  \\(^o^)/  \\(^0^)/");
@@ -438,7 +304,7 @@ void PlayerInput::checkGameOver()
     }
 
     //Defeat
-    if (playerHealth == 0)
+    if (game->getPH() == 0)
     {
         QMessageBox messageBox(this);
         messageBox.about(this, "Comiseration", "Submarine has been compromised, plan unsuccessful\n /(XoX)\\");
@@ -446,3 +312,5 @@ void PlayerInput::checkGameOver()
         this->close();
     }
 }
+
+

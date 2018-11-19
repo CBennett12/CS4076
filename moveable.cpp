@@ -11,6 +11,7 @@ template<class T>
 void Moveable<T>::moveRoom(Room r)
 {
     //Write in the code to change the room here
+    r.getIndex();
 }
 
 

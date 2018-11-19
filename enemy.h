@@ -9,6 +9,7 @@ public:
 
 private:
     void moveToRoom(Room);
+    void shoot();
 };
 
 #endif // ENEMY_H

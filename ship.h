@@ -1,16 +1,22 @@
 #ifndef SHIP_H
 #define SHIP_H
-#include <uno.h>
+#include "uno.h"
 
+#include <string>
+#include <QString>
+#include <iostream>
+#include "Room.h"
 
-class Ship : public Uno
+using std::string;
+
+class Ship : public uno
 {
 public:
-    virtual Ship();
-    virtual ~Ship();
+    Ship();
+    ~Ship();
 
 protected:
-    int torpedo, mine, health;
+    int torpedo, mines, health;
     string heading;
     Room currentRoom;
     string setHeading(Room);

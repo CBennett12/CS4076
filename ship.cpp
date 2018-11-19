@@ -11,7 +11,7 @@ inline Room heading(Room r)
 
 Ship::Ship()
 {
-
+ ;
 }
 
 Ship::~Ship()
@@ -27,6 +27,6 @@ void Ship::shoot()
 
 void Ship::layMine()
 {
-    mine--;
+    mines--;
     //call constructor on mine in current room
 }

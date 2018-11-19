@@ -13,7 +13,7 @@
 #include "Room.h"
 #include "starter.h"
 #include "ship.h"
-
+#include "game.h"
 using namespace std;
 
 class PlayerInput : public QWidget
@@ -27,23 +27,16 @@ class PlayerInput : public QWidget
        string getCurrentRoom();
        int size; //Global Variable
 
-
-           bool moveSet;
-           bool scanSet;
-           bool tactSet;
-           string commands[3];
-           void setMove(string command);
-           void setScan(string command);
-           void setTact(string command);
-           void resetCommands();
-           void update();
+       void resetCommands();
+       void update();
 
     private:
         QPushButton *moveBtn, *scanBtn, *tactBtn, *helpBtn, *executeBtn;
         QLabel *tact, *scan, *nav, *temp, *help, *pHealth, *pTorp, *pMine, *pCode, *execute, *cHealth, *cTorp, *cMine, *cCode;
-        int count, playerHealth, playerTorpedos, playerMines, playerCodes, maxHealth, maxTorpedos, maxMines, piecesNeeded;
+        int count;
         QGridLayout *mainLayout, *buttonLayout, *mapLayout, *infoLayout;
         Room *currentRoom;
+        Game* game;
 
         static vector<QLabel*>map;
         QFont font;
@@ -52,9 +45,10 @@ class PlayerInput : public QWidget
         void useScan(string command);
         void useAttack(string command);
         void useMove(string command);
-        void checkGameOver();
+        void checkGameOver(Game* game);
         void updateMap(Room[]);
-        void updateValues(Ship[]);
+        //void updateValues(uno[]);
+        //can't do an array of abstract class
         void updateUI();
 
     /*private slots:

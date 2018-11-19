@@ -1,4 +1,4 @@
-#include "room.h"
+#include "Room.h"
 
 Room::Room()
 {
@@ -31,5 +31,10 @@ void Room::setExits(int roomNumber)
         exits[3] = -1;
     else
         exits[3] = roomNumber -1;
+}
+
+int Room::checkExit(int currentRoom, int nextRoom)
+{
+    return 4;
 }
 

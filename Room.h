@@ -11,7 +11,7 @@ public:
     Room();
     Room(int);
     int checkExit(int, int); //current room, heading, returns -1 if unable to move
-    uno isOccupied();
+    //uno isOccupied();
     int getIndex();
 
 
