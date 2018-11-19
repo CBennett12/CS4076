@@ -1,8 +1,8 @@
 #ifndef ROOM_H
 #define ROOM_H
 
-#include "uno.h"
-#include "starter.h"
+#include <uno.h>
+#include <starter.h>
 
 class Room
 {
@@ -19,7 +19,7 @@ private:
     void setExits(int);
     signed int tempRoom, global;
     int* exits;
-    uno occupies;
+    //uno occupies;
     int index;
 };
 
