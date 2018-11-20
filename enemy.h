@@ -7,6 +7,7 @@ class Enemy : public Ship
 {
 public:
     Enemy();
+    ~Enemy();
 
 private:
     void moveToRoom(Room);

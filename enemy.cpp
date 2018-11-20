@@ -9,6 +9,12 @@ Enemy::Enemy()
     torpedo = 1;
     health = 1;
     mine = 1;
+    this->type = UnoType::Enemy;
+}
+
+Enemy::~Enemy()
+{
+    ;
 }
 
 void Enemy::moveToRoom(Room)
