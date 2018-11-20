@@ -101,57 +101,70 @@ void Game::useAttack()
 {
     if (commands[2].compare("1")==0)
     {
-       //Reload Torpedo
-        if (playerTorpedos != maxTorpedos)
+       //Lay Mine
+        if (playerMines != 0)
         {
-            playerTorpedos++;
+            //player.layMine();
+            playerMines--;
         }
     }
     else
         if (commands[2].compare("2")==0)
         {
-           //Reload Mine
-            if (maxMines != playerMines)
+           //Fire Torpedo North
+            if (playerTorpedos != 0)
             {
-                playerMines++;
+                //player.shoot();
+                playerTorpedos--;
             }
         }
         else
             if (commands[2].compare("3")==0)
             {
-                //Lay Mine
-                if (playerMines != 0)
-                {
-                    //player.layMine();
-                    playerMines--;
-                }
+                //Fire Torpedo South
+                 if (playerTorpedos != 0)
+                 {
+                     //player.shoot();
+                     playerTorpedos--;
+                 }
             }
-            else
-                //Fire Torpedos
-                if (commands[2].compare("4")==0)
-                {
-                    if (playerTorpedos != 0)
-                    {
-                        //player.shoot();
-                        playerTorpedos--;
-                    }
+    else if (commands[2].compare("4")==0)
+    {
+        //Fire Torpedo East
+         if (playerTorpedos != 0)
+         {
+             //player.shoot();
+             playerTorpedos--;
+         }
+    }
+    else
+        if (commands[2].compare("5")==0)
+        {
+           //Fire Torpedo West
+            if (playerTorpedos != 0)
+            {
+                //player.shoot("West");
+                playerTorpedos--;
+            }
+        }
+        else
+            if (commands[2].compare("6")==0)
+            {
+                //Salvage Wreckage
 
-                }
-                else
-                    if (commands[2].compare("5")==0)
-                    {
-                        //Salvage Wreckage
+                //player+ship()
 
-                        //player+ship()
-
-                        /*
-                         * if (room has a destroyed ship)
-                         * {
-                         *  playership=playerShip+destroyedShip;
-                         * }
-                         */
-                        playerCodes++;
-                    }
+                /*
+                 * if (room has a destroyed ship)
+                 * {
+                 *  playership=playerShip+destroyedShip;
+                 * }
+                 */
+                playerCodes++;
+                playerTorpedos=maxTorpedos;
+                playerMines=maxMines;
+                playerHealth=maxHealth;
+            }
 }
 
 //A pretty Ronseal function, resets the commands array and booleans

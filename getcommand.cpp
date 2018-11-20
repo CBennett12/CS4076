@@ -16,13 +16,14 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
     QVBoxLayout* buttonsLayout = new QVBoxLayout(this);
     buttonsLayout->setSpacing(0);
     //string lastSelected="move";
-    string cList [5];
+    string cList [6];
     //int btnPressed=-1;
     btn1 = new QRadioButton("Button1");
     btn2 = new QRadioButton("Button2");
     btn3 = new QRadioButton("Button3");
     btn4 = new QRadioButton("Button4");
     btn5 = new QRadioButton("Button5");
+    btn6 = new QRadioButton("Button6");
 
     //If you are setting movement command, set 4 buttons, hide 1
     if (lastSelected.compare("Movement")==0)
@@ -33,11 +34,14 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
         btn2->setText(QString::fromStdString(cList[1]));
         btn3->setText(QString::fromStdString(cList[2]));
         btn4->setText(QString::fromStdString(cList[3]));
+        btn5->setText(QString::fromStdString(cList[4]));
+        btn6->setText(QString::fromStdString(cList[5]));
         btn1->show();
         btn2->show();
         btn3->show();
         btn4->show();
         btn5->hide();
+        btn6->hide();
     }
     //If you are setting scanning command, set 2 buttons, hide 3
     else if (lastSelected.compare("Scanning")==0)
@@ -50,6 +54,7 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
         btn3->hide();
         btn4->hide();
         btn5->hide();
+        btn6->hide();
     }
     //If you are setting tactical command, set all 5 buttons
     else if (lastSelected.compare("Tactical")==0)
@@ -60,11 +65,13 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
         btn3->setText(QString::fromStdString(cList[2]));
         btn4->setText(QString::fromStdString(cList[3]));
         btn5->setText(QString::fromStdString(cList[4]));
+        btn6->setText(QString::fromStdString(cList[5]));
         btn1->show();
         btn2->show();
         btn3->show();
         btn4->show();
         btn5->show();
+        btn6->show();
     }
     //Add the 5 buttons to the button group, and the button layout
     btnGroup->addButton(btn1, 1);
@@ -72,11 +79,13 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
     btnGroup->addButton(btn3, 3);
     btnGroup->addButton(btn4, 4);
     btnGroup->addButton(btn5, 5);
+    btnGroup->addButton(btn6, 6);
     buttonsLayout->addWidget(btn1);
     buttonsLayout->addWidget(btn2);
     buttonsLayout->addWidget(btn3);
     buttonsLayout->addWidget(btn4);
     buttonsLayout->addWidget(btn5);
+    buttonsLayout->addWidget(btn6);
     buttonsLayout->addWidget(ui->buttonBox);
 
 
@@ -104,6 +113,7 @@ void GetCommand:: isMove(string cList[5])
     cList[2]="Turn Port";
     cList[3]="Turn Starboard";
     cList[4]="";
+    cList[5]="";
 
 }
 
@@ -115,6 +125,7 @@ void GetCommand:: isScan(string cList[5])
     cList[2]="";
     cList[3]="";
     cList[4]="";
+    cList[5]="";
 
 }
 
@@ -122,11 +133,12 @@ void GetCommand:: isScan(string cList[5])
 //If selecting tactical command, set list of commands to the tactical list
 void GetCommand:: isTact(string cList[5])
 {
-    cList[0]="Reload Torpedo";
-    cList[1]="Reload Mine";
-    cList[2]="Lay Mine";
-    cList[3]="Fire Torpedo";
-    cList[4]="Salvage";
+    cList[0]="Lay Mine";
+    cList[1]="Fire Torpedo North";
+    cList[2]="Fire Torpedo South";
+    cList[3]="Fire Torpedo East";
+    cList[4]="Fire Torpedo West";
+    cList[5]="Salvage";
 
 }
 

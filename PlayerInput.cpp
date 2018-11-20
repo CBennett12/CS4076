@@ -209,8 +209,22 @@ void PlayerInput:: handletButton()
        //if something has been saved to command, add it to the array and update tactical label
         if (command.size()>0)
         {
+
+            if (command.compare("1")==0 && game->getMines()==0)
+            {
+                QMessageBox messageBox(this);
+                messageBox.about(this, "Error", "Insufficient mine ammunition");
+            }
+            else if ((command.compare("2")==0 || command.compare("3")==0 || command.compare("4")==0 || command.compare("5")==0) && game->getTorps()==0)
+            {
+                QMessageBox messageBox(this);
+                messageBox.about(this, "Error", "Insufficient torpedo ammunition");
+            }
+            else
+            {
             game->setCommand(command, 2);
             changePixmap();
+            }
         }
     }
 }

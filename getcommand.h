@@ -39,7 +39,7 @@ public:
 private:
     Ui::GetCommand *ui;
     QButtonGroup* btnGroup;
-    QRadioButton *btn1, *btn2, *btn3, *btn4, *btn5;
+    QRadioButton *btn1, *btn2, *btn3, *btn4, *btn5, *btn6;
 
 private slots:
     void buttonWasClicked(int);
