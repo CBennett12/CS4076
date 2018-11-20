@@ -12,6 +12,7 @@ public:
 
 private:
     int maxHealth, maxMines, maxTorpedos, enigmaCodes;
+    string toString();
 };
 
 #endif // PLAYER_H

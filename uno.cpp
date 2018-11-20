@@ -1,6 +1,12 @@
 #include "uno.h"
 
-uno::~uno()
+string Uno:: toString()
+{
+    return "This is a string";
+
+}
+
+Uno::~Uno()
 {
     ;
 }

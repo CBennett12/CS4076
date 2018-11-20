@@ -9,14 +9,14 @@
 
 using std::string;
 
-class Ship : public uno
+class Ship : public Uno
 {
 public:
     Ship();
     ~Ship();
 
 protected:
-    int torpedo, mines, health;
+    int torpedo, mine, health;
     string heading;
     Room currentRoom;
     string setHeading(Room);

@@ -10,7 +10,7 @@ PlayerInput::PlayerInput()
     //create font size for the command labels (makes the labels fit and look nicer)
     QFont font;
     font.setPointSize(10);
-    Game* game = new Game();
+    game = new Game();
     //string array for the commands
 
 

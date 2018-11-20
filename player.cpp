@@ -12,3 +12,8 @@ void Player::operator+(Enemy sT)
     mine = maxMines;
     enigmaCodes++;
 }
+
+string Player::toString()
+{
+    return("Virtual Function!!!!");
+}

@@ -30,8 +30,8 @@ void Game::spawnEnemies(Enemy arr [])
 {
     for(int i = 0; i < global; i++)
     {
-        Enemy tempEnemy = new uno();
-        arr[i] = tempEnemy;
+        Enemy *tempEnemy = new Enemy();
+        arr[i] = *tempEnemy;
     }
 }
 

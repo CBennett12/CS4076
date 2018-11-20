@@ -27,6 +27,6 @@ void Ship::shoot()
 
 void Ship::layMine()
 {
-    mines--;
+    mine--;
     //call constructor on mine in current room
 }
