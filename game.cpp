@@ -6,7 +6,7 @@
 
 Game::Game()
 {
-    Room* pMap = new Room[globalSquared];
+    Room pMap [globalSquared];
     //makeMap(pMap);
     string commands[3];
     /*
@@ -19,7 +19,7 @@ Game::Game()
     tactSet = false;
 
     playerHealth = maxHealth = 5;
-    playerMines = maxTorpedos = 5;
+    playerTorpedos = maxTorpedos = 5;
     playerMines = maxMines = 5;
     piecesNeeded = global/2;
     playerCodes = 0;
@@ -28,7 +28,7 @@ Game::Game()
 
 void Game::spawnEnemies(Enemy arr [])
 {
-    for(int i = 0; i < global; i++)
+    for(int i = 0; i < static_cast<int>(global); i++)
     {
         Enemy *tempEnemy = new Enemy();
         arr[i] = *tempEnemy;
@@ -43,7 +43,7 @@ void Game::spawnPlayer()
 void Game::makeMap(Room* pMap[])
 {
     for(unsigned int i = 0; i < globalSquared; i++)
-        pMap[i] = new Room(i);
+        pMap[i] = new Room(static_cast<int>(i));
 }
 
 //the next 3 functions all set the command inputted to the array, and set their relevant booleans
@@ -114,7 +114,6 @@ void Game::useAttack()
             if (maxMines != playerMines)
             {
                 playerMines++;
-                //cMine->setText(QString::number(playerMines));
             }
         }
         else
@@ -124,6 +123,7 @@ void Game::useAttack()
                 if (playerMines != 0)
                 {
                     //player.layMine();
+                    playerMines--;
                 }
             }
             else
@@ -133,7 +133,9 @@ void Game::useAttack()
                     if (playerTorpedos != 0)
                     {
                         //player.shoot();
+                        playerTorpedos--;
                     }
+
                 }
                 else
                     if (commands[2].compare("5")==0)
@@ -148,6 +150,7 @@ void Game::useAttack()
                          *  playership=playerShip+destroyedShip;
                          * }
                          */
+                        playerCodes++;
                     }
 }
 

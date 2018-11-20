@@ -35,7 +35,8 @@ SOURCES += \
     game.cpp \
     player.cpp \
     enemy.cpp \
-    moveable.cpp
+    moveable.cpp \
+    helpwindow.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -48,11 +49,13 @@ HEADERS += \
     game.h \
     player.h \
     enemy.h \
-    moveable.h
+    moveable.h \
+    helpwindow.h
 
 FORMS += \
         mainwindow.ui \
-    getcommand.ui
+    getcommand.ui \
+    helpwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

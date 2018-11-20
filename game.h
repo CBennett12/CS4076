@@ -26,6 +26,7 @@ private:
     void spawnPlayer();
     void spawnEnemies(Enemy[]);
     void makeMap(Room* []);
+
     bool moveSet;
     bool scanSet;
     bool tactSet;
@@ -35,6 +36,7 @@ private:
     //Enemy tempEnemy;
     Room* map;
     Room temp;
+    Room pMap [];
 
 
 

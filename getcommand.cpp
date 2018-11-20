@@ -1,6 +1,7 @@
 #include "getcommand.h"
 #include "ui_getcommand.h"
 #include "playerInput.h"
+#include "helpwindow.h"
 
 GetCommand::GetCommand(QWidget *parent, string lastSelected) :
     QDialog(parent),
@@ -9,7 +10,7 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
     ui->setupUi(this);
     string title ="Get " + lastSelected + " Command";
     this->setWindowTitle(QString::fromStdString(title));
-
+    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
    //Create a button group for the different commands
     QButtonGroup* btnGroup = new QButtonGroup(this);
     QVBoxLayout* buttonsLayout = new QVBoxLayout(this);

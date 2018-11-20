@@ -69,8 +69,7 @@ private slots:
     void handlesButton();
     void handletButton();
     void handleExButton();
-    //void handlehButton();
-    //void handleeButton();
+    void handlehButton();
 
 
     void changePixmap();

@@ -2,6 +2,7 @@
 #include "getcommand.h"
 #include "starter.h"
 #include "game.h"
+#include "helpwindow.h"
 
 std::vector<QLabel*> PlayerInput::map;
 
@@ -123,13 +124,13 @@ PlayerInput::PlayerInput()
 
     //Set the booleans for each command to false
 
-    changePixmap();
+    //changePixmap();
 
     //slots for each command button
     connect(moveBtn, SIGNAL (released()), this, SLOT (handlemButton()));
     connect(scanBtn, SIGNAL (released()), this, SLOT (handlesButton()));
     connect(tactBtn, SIGNAL (released()), this, SLOT (handletButton()));
-    //connect(helpBtn, SIGNAL (released()), this, SLOT (handlehButton()));
+    connect(helpBtn, SIGNAL (released()), this, SLOT (handlehButton()));
     connect(executeBtn, SIGNAL(released()), this, SLOT(handleExButton()));
 
 
@@ -248,13 +249,15 @@ void PlayerInput:: handleExButton()
 
 }
 
-/*
+
 void PlayerInput:: handlehButton()
 {
-    GetCommand *setHelp = new GetCommand(nullptr, "help");
+   HelpWindow *setHelp = new HelpWindow();
+   setHelp->setModal(true);
+   setHelp->exec();
 
 }
-*/
+
 
 void PlayerInput:: changePixmap()
 {
