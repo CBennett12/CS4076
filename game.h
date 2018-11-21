@@ -6,6 +6,7 @@
 #include <time.h>
 #include <vector>
 #include <iostream>
+#include <player.h>
 #define globalHalfed global/2
 #define halfedGlobal 5
 
@@ -36,7 +37,8 @@ private:
     void spawnPlayer();
     void spawnEnemies(Enemy[]);
     void makeMap(Uno* []);
-    void populateMap(Uno**);
+    void populateMap(Uno**, Enemy*[]);
+    void populatePlayer(Uno**, Player*);
 
     bool moveSet;
     bool scanSet;
@@ -45,10 +47,12 @@ private:
     int playerHealth, playerTorpedos, playerMines, playerCodes, maxHealth, maxTorpedos, maxMines, piecesNeeded;
     const unsigned int halfGlobal;
     Enemy tempEnemy;
+    Player *pPtr;
     //Room* map;
     //Enemy enemies[globalHalfed];
-    Enemy enemies[halfedGlobal];
-    Uno *pMap[100];
+    Enemy *enemies[halfedGlobal];
+    Uno *map[100];
+    vector<int> populatedRooms;
 };
 
 #endif // GAME_H

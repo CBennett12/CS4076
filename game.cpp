@@ -12,8 +12,9 @@
 
 Game::Game() :halfGlobal(global/2) //tried using initializer
 {
+    srand(time(NULL)); //makes random numbers random
     //Uno* pMap [100];
-    makeMap(pMap);
+    //makeMap(pMap);
     srand(time(NULL)); //makes random numbers random
     string commands[3];
     /*
@@ -30,8 +31,12 @@ Game::Game() :halfGlobal(global/2) //tried using initializer
     playerMines = maxMines = 5;
     piecesNeeded = global/2;
     playerCodes = 0;
+    pPtr = new Player();
+    for(int i = 0; i < halfGlobal; i++)
+        enemies[i] = new Enemy();
 
-    populateMap(pMap);
+    populatePlayer(map, pPtr);
+    //populateMap(map, enemies);
 }
 
 void Game::spawnEnemies(Enemy arr [])
@@ -66,9 +71,9 @@ void Game::setCommand(string command, int index)
     commands[index]=command;
     moveSet=true;
     switch (index) {
-            case 0: moveSet=true;
-            case 1: scanSet=true;
-            case 2: tactSet=true;
+    case 0: moveSet=true;
+    case 1: scanSet=true;
+    case 2: tactSet=true;
     }
 }
 
@@ -77,12 +82,12 @@ void Game::useMove()
 {
     if (commands[0].compare("1")==0)
     {
-       //Go Forward
+        //Go Forward
     }
     else
         if (commands[0].compare("2")==0)
         {
-           //Go Backwards
+            //Go Backwards
         }
         else
             if (commands[0].compare("3")==0)
@@ -101,12 +106,12 @@ void Game::useScan()
 {
     if (commands[1].compare("1")==0)
     {
-       //Passive Scan
+        //Passive Scan
     }
     else
         if (commands[1].compare("2")==0)
         {
-           //Active Scan
+            //Active Scan
         }
 }
 
@@ -115,7 +120,7 @@ void Game::useAttack()
 {
     if (commands[2].compare("1")==0)
     {
-       //Lay Mine
+        //Lay Mine
         if (playerMines != 0)
         {
             //player.layMine();
@@ -125,7 +130,7 @@ void Game::useAttack()
     else
         if (commands[2].compare("2")==0)
         {
-           //Fire Torpedo North
+            //Fire Torpedo North
             if (playerTorpedos != 0)
             {
                 //player.shoot();
@@ -136,61 +141,61 @@ void Game::useAttack()
             if (commands[2].compare("3")==0)
             {
                 //Fire Torpedo South
-                 if (playerTorpedos != 0)
-                 {
-                     //player.shoot();
-                     playerTorpedos--;
-                 }
+                if (playerTorpedos != 0)
+                {
+                    //player.shoot();
+                    playerTorpedos--;
+                }
             }
-    else if (commands[2].compare("4")==0)
-    {
-        //Fire Torpedo East
-         if (playerTorpedos != 0)
-         {
-             //player.shoot();
-             playerTorpedos--;
-         }
-    }
-    else
-        if (commands[2].compare("5")==0)
-        {
-           //Fire Torpedo West
-            if (playerTorpedos != 0)
+            else if (commands[2].compare("4")==0)
             {
-                //player.shoot("West");
-                playerTorpedos--;
+                //Fire Torpedo East
+                if (playerTorpedos != 0)
+                {
+                    //player.shoot();
+                    playerTorpedos--;
+                }
             }
-        }
-        else
-            if (commands[2].compare("6")==0)
-            {
-                //Salvage Wreckage
+            else
+                if (commands[2].compare("5")==0)
+                {
+                    //Fire Torpedo West
+                    if (playerTorpedos != 0)
+                    {
+                        //player.shoot("West");
+                        playerTorpedos--;
+                    }
+                }
+                else
+                    if (commands[2].compare("6")==0)
+                    {
+                        //Salvage Wreckage
 
-                //player+ship()
+                        //player+ship()
 
-                /*
+                        /*
                  * if (room has a destroyed ship)
                  * {
                  *  playership=playerShip+destroyedShip;
                  * }
                  */
-                playerCodes++;
-                playerTorpedos=maxTorpedos;
-                playerMines=maxMines;
-                playerHealth=maxHealth;
-            }
+                        playerCodes++;
+                        playerTorpedos=maxTorpedos;
+                        playerMines=maxMines;
+                        playerHealth=maxHealth;
+                    }
 }
 
 //A pretty Ronseal function, resets the commands array and booleans
 void Game::resetCommands()
 {
     for (int i=0; i<(3);i++)
-     {
-         commands[i]="";
-     }
-     moveSet=false;
-     scanSet=false;
-     tactSet=false;
+    {
+        commands[i]="";
+    }
+    moveSet=false;
+    scanSet=false;
+    tactSet=false;
 }
 
 int Game :: getPH() const
@@ -230,25 +235,29 @@ bool Game :: getTact() const
 
 Uno** Game::getMap()
 {
-    return pMap;
+    return map;
 }
 
-void Game::populateMap(Uno** map)
+void Game::populateMap(Uno** map, Enemy** enemies)
 {
-    srand(time(NULL)); //makes random numbers random
-    vector<int> populatedRooms;
-    int num;
-    for (int i = 0; i < global/2 + 1; i++)
+    int num = rand()%100;
+    for (int i = 0; i < global/2; i++)
     {
-        num = rand()%100;
-        if(i == 0) // set players room
-            populatedRooms.push_back(num);
-        else
+        while(find(populatedRooms.begin(), populatedRooms.end(), num) != populatedRooms.end())
         {
-            while(find(populatedRooms.begin(), populatedRooms.end(), num) != populatedRooms.end())
-                num = rand()%100;
-            populatedRooms.push_back(num);
-            cout<<num<<" else"<<endl;
+            num = rand()%100;
+            if(map[num] == nullptr)
+            {
+                populatedRooms.push_back(num);
+                map[num] = enemies[i-1];
+            }
         }
     }
+}
+
+void Game::populatePlayer(Uno** map, Player* ptr)
+{
+    int num = rand()%100;
+    populatedRooms.push_back(num);
+    map[num] = pPtr;
 }
