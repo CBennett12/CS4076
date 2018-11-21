@@ -5,7 +5,7 @@ Mine::Mine()
 
 }
 
-void Mine::toString()
+string Mine::toString()
 {
-    cout<<"I'm a mine"<<endl;
+    return "string";
 }

@@ -10,7 +10,7 @@ public:
     Torpedo();
 
 private:
-    void toString();
+    string toString();
 };
 
 #endif // TORPEDO_H

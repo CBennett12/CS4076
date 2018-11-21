@@ -5,7 +5,7 @@ Wreckage::Wreckage()
 
 }
 
-void Wreckage::toString()
+string Wreckage::toString()
 {
-    cout<<"I'm Wreckage!"<<endl;;
+    return "wreck";
 }

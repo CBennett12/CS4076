@@ -30,6 +30,8 @@ Game::Game() :halfGlobal(global/2) //tried using initializer
     playerMines = maxMines = 5;
     piecesNeeded = global/2;
     playerCodes = 0;
+
+    populateMap(map);
 }
 
 void Game::spawnEnemies(Enemy arr [])
@@ -227,18 +229,22 @@ Uno** Game::getMap()
     return map;
 }
 
-void Game::populateMap(Uno*[])
+void Game::populateMap(Uno** map)
 {
-    int populatedRooms[global/2 + 1];
-    for(int i = 0; i > global/2 + 1; i++)
+    srand(time(NULL)); //makes random numbers random
+    vector<int> populatedRooms;
+    int num;
+    for (int i = 0; i < global/2 + 1; i++)
     {
-        if(i == 0)
-        {
-            //set players room
-        }
+        num = rand()%100;
+        if(i == 0) // set players room
+            populatedRooms.push_back(num);
         else
         {
-            //set computers room
+            while(find(populatedRooms.begin(), populatedRooms.end(), num) != populatedRooms.end())
+                num = rand()%100;
+            populatedRooms.push_back(num);
+            cout<<num<<" else"<<endl;
         }
     }
 }

@@ -3,6 +3,7 @@
 #include <enemy.h>
 #include <ship.h>
 #include <uno.h>
+using namespace std;
 
 class Player : public Ship
 {
@@ -12,7 +13,7 @@ public:
 
 private:
     int maxHealth, maxMines, maxTorpedos, enigmaCodes;
-    string toString()override;
+    string toString();
 };
 
 #endif // PLAYER_H

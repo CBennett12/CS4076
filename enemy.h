@@ -12,7 +12,7 @@ public:
 private:
     void moveToRoom(Room);
     void shoot();
-    void toString();
+    string toString();
 };
 
 #endif // ENEMY_H

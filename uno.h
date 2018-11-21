@@ -10,7 +10,7 @@ enum class UnoType{Player,Enemy,Torpedo,Mine};
 class Uno //Unidentified Nautical Object, and there can only be one at a time
 {
 public:
-    virtual void toString()=0;
+    virtual string toString()=0;
     virtual ~Uno();
 
 protected:

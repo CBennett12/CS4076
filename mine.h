@@ -10,7 +10,7 @@ public:
     Mine();
 
 private:
-    void toString();
+    string toString();
 };
 
 #endif // MINE_H

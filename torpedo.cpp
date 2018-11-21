@@ -5,7 +5,7 @@ Torpedo::Torpedo()
 
 }
 
-void Torpedo::toString()
+string Torpedo::toString()
 {
-    cout<<"I'm a torpedo!"<<endl;
+    return "torpedo";
 }

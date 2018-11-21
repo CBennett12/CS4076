@@ -10,7 +10,7 @@ public:
     Wreckage();
 
 private:
-    void toString();
+    string toString();
 };
 
 #endif // WRECKAGE_H
