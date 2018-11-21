@@ -16,5 +16,7 @@ void Player::operator+(Enemy *sT)
 
 string Player::toString()
 {
-    return("Virtual Function!!!!");
+    return("player");
 }
+
+

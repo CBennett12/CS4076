@@ -69,19 +69,39 @@ PlayerInput::PlayerInput()
     {
         for(unsigned int j = 0; j < global; j++)
         {
-            Uno** mapIn = game->getMap();
+
+            mapIn = game->getMap();
             if (mapIn[index]==(nullptr))
-                {
-                    map.push_back(new QLabel("?"));
-                }
-            else
-            {
-            map.push_back(new QLabel(QString::number(index)));
-            }
-            //map.push_back(new QLabel("?"));
+                    {
+                        map.push_back(new QLabel("-"));
+                    }
+                    else
+                    if (mapIn[index]->toString().compare("player") == 0)
+                    {
+                        map.push_back(new QLabel("P"));
+                    }
+            else if (mapIn[index]->toString().compare("enemy") == 0)
+                    {
+                        map.push_back(new QLabel("E"));
+                    }
+                    else if (mapIn[index]->toString().compare("torpedo") == 0)
+                            {
+                                map.push_back(new QLabel("T"));
+                            }
+                    else if (mapIn[index]->toString().compare("mine") == 0)
+                            {
+                                map.push_back(new QLabel("M"));
+                            }
+                    else if (mapIn[index]->toString().compare("wreck") == 0)
+                            {
+                                map.push_back(new QLabel("W"));
+                            }
+                    else
+                            {
+                                map.push_back(new QLabel(""));
+                            }
 
             mapLayout->addWidget(map.at(index),(static_cast<int>(i)),(static_cast<int>(j)));
-            //cout << index << endl;
             index++;
         }
     }

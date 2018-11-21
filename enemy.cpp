@@ -30,5 +30,5 @@ void Enemy::shoot()
 
 string Enemy::toString()
 {
-    return("Virtual Function!!!!");
+    return("enemy");
 }

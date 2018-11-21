@@ -8,7 +8,6 @@ class Player : public Ship
 {
 public:
     Player();
-
     void operator+(Enemy *sT);
 
 private:

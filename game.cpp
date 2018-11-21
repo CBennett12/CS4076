@@ -1,6 +1,9 @@
 #include "game.h"
 #include "Room.h"
-
+#include "player.h"
+#include <string>
+#include <iostream>
+#include <QTextStream>
 #include <qmessagebox.h>
 #define globalSquared global*global
 
@@ -9,8 +12,8 @@
 
 Game::Game() :halfGlobal(global/2) //tried using initializer
 {
-    Room pMap [globalSquared];
-    //makeMap(pMap);
+    Uno* pMap [100];
+    makeMap(pMap);
     string commands[3];
     /*
      * commands[0] = moveCommand
@@ -46,7 +49,6 @@ void Game::makeMap(Uno *map[])
 {
     for(unsigned int i = 0; i < globalSquared; i++)
     {
-        //pMap[i] = new Room(static_cast<int>(i));
         map[i] = nullptr;
     }
 }

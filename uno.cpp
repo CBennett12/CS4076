@@ -2,7 +2,7 @@
 
 string Uno:: toString()
 {
-    return "This is a string";
+    return "player";
 
 }
 

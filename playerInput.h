@@ -14,6 +14,12 @@
 #include "starter.h"
 #include "ship.h"
 #include "game.h"
+#include "enemy.h"
+#include "player.h"
+#include "torpedo.h"
+#include "mine.h"
+#include "uno.h"
+
 using namespace std;
 
 class PlayerInput : public QWidget
@@ -26,10 +32,9 @@ class PlayerInput : public QWidget
        void setRoom(Room);
        string getCurrentRoom();
        int size; //Global Variable
-
        void resetCommands();
        void update();
-
+       Uno** mapIn;
     private:
         QPushButton *moveBtn, *scanBtn, *tactBtn, *helpBtn, *executeBtn;
         QLabel *tact, *scan, *nav, *temp, *help, *pHealth, *pTorp, *pMine, *pCode, *execute, *cHealth, *cTorp, *cMine, *cCode;
@@ -73,5 +78,8 @@ private slots:
 
 
     void changePixmap();
+
+
+
 };
 #endif // PlayerInput_H
