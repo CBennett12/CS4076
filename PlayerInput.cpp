@@ -54,40 +54,40 @@ PlayerInput::PlayerInput()
 
     mapLayout = new QGridLayout();
     unsigned int index = 0;
+
     for(unsigned int i = 0; i < global; i++)
     {
         for(unsigned int j = 0; j < global; j++)
         {
-
-            mapIn = game->getMap();
+            mapIn = game->map;
             if (mapIn[index]==(nullptr))
-                    {
-                        map.push_back(new QLabel("-"));
-                    }
-                   else if (mapIn[index]->toString().compare("p") == 0)
-                    {
-                        map.push_back(new QLabel("P"));
-                    }
+            {
+                map.push_back(new QLabel("-"));
+            }
+            else if (mapIn[index]->toString().compare("player") == 0)
+            {
+                map.push_back(new QLabel("P"));
+            }
             else if (mapIn[index]->toString().compare("enemy") == 0)
-                    {
-                        map.push_back(new QLabel("E"));
-                    }
-                    else if (mapIn[index]->toString().compare("torpedo") == 0)
-                            {
-                                map.push_back(new QLabel("T"));
-                            }
-                    else if (mapIn[index]->toString().compare("mine") == 0)
-                            {
-                                map.push_back(new QLabel("M"));
-                            }
-                    else if (mapIn[index]->toString().compare("wreck") == 0)
-                            {
-                                map.push_back(new QLabel("W"));
-                            }
-                    else
-                            {
-                                map.push_back(new QLabel(""));
-                            }
+            {
+                map.push_back(new QLabel("E"));
+            }
+            else if (mapIn[index]->toString().compare("torpedo") == 0)
+            {
+                map.push_back(new QLabel("T"));
+            }
+            else if (mapIn[index]->toString().compare("mine") == 0)
+            {
+                map.push_back(new QLabel("M"));
+            }
+            else if (mapIn[index]->toString().compare("wreck") == 0)
+            {
+                map.push_back(new QLabel("W"));
+            }
+            else
+            {
+                map.push_back(new QLabel(""));
+            }
 
             mapLayout->addWidget(map.at(index),(static_cast<int>(i)),(static_cast<int>(j)));
             index++;
@@ -101,10 +101,10 @@ PlayerInput::PlayerInput()
     pTorp = new QLabel("Remaining torpedos: ");
     pMine = new QLabel("Remaining mines: ");
     pCode = new QLabel("Pieces of Enigma Code missing: ");
-    cHealth = new QLabel(QString::number(game->getPH()));
-    cTorp = new QLabel(QString::number(game->getTorps()));
-    cMine = new QLabel(QString::number(game->getMines()));
-    cCode = new QLabel(QString::number((game->getPN())));
+    cHealth = new QLabel(QString::number(game->playerHealth));
+    cTorp = new QLabel(QString::number(game->playerTorpedos));
+    cMine = new QLabel(QString::number(game->playerMines));
+    cCode = new QLabel(QString::number((game->piecesNeeded)));
 
     pHealth->setFont(font);
     pTorp->setFont(font);
@@ -131,13 +131,15 @@ PlayerInput::PlayerInput()
 
     buttonLayout->setRowStretch(0,-1);
     mainLayout = new QGridLayout(this);
+
     mainLayout->addLayout(mapLayout, 0, 0, 2, 1);
     mainLayout->addLayout(infoLayout, 2, 0, Qt::AlignCenter);
     mainLayout->addLayout(buttonLayout, 4, 0, Qt::AlignBottom);
 
-
-
+    updateLabels();
+    game->populateMap(game->map,game->enemies);
     setLayout(mainLayout);
+
 
     //Set the booleans for each command to false
 
@@ -174,10 +176,10 @@ void PlayerInput:: handlemButton()
         command = to_string(btnSelected);
         //If something has been saved in command, set movement command and update movement label
         if (command.size()>0)
-            {
+        {
             game->setCommand(command,0);
             updateLabels();
-            }
+        }
     }
 
 }
@@ -217,12 +219,12 @@ void PlayerInput:: handletButton()
     int btnSelected=0;
 
     //if a button has been pressed and is within the limits, get its data and save it to the command string
-    if (setTactical->getBtnPressed() > 0 && setTactical->getBtnPressed() < 6)
+    if (setTactical->getBtnPressed() > 0 && setTactical->getBtnPressed() < 7)
     {
         btnSelected=setTactical->getBtnPressed();
 
         command = to_string(btnSelected);
-       //if something has been saved to command, add it to the array and update tactical label
+        //if something has been saved to command, add it to the array and update tactical label
         if (command.size()>0)
         {
 
@@ -238,8 +240,8 @@ void PlayerInput:: handletButton()
             }
             else
             {
-            game->setCommand(command, 2);
-            updateLabels();
+                game->setCommand(command, 2);
+                updateLabels();
             }
         }
     }
@@ -251,23 +253,23 @@ void PlayerInput:: handleExButton()
 {
 
     //if each command has been set, execute them
-    if ((game->getMove()) || (game->getScan()) || (game->getTact()))
+    if ((game->moveSet) || (game->scanSet) || (game->tactSet))
     {
         QMessageBox messageBox(this);
         messageBox.about(this, "Orders Received", "Executing commands");
-        if (game->getMove())
+        if (game->moveSet)
         {
             game->useMove();
         }
-        if (game->getScan())
+        if (game->scanSet)
         {
-         game->useScan();
+            game->useScan();
         }
-        if (game->getTact())
+        if (game->tactSet)
         {
             game->useAttack();
         }
-    //When all commands have been executed, reset them and update the labels
+        //When all commands have been executed, reset them and update the labels
         game->resetCommands();
         updateLabels();
     }
@@ -282,9 +284,9 @@ void PlayerInput:: handleExButton()
 
 void PlayerInput:: handlehButton()
 {
-   HelpWindow *setHelp = new HelpWindow();
-   setHelp->setModal(true);
-   setHelp->exec();
+    HelpWindow *setHelp = new HelpWindow();
+    setHelp->setModal(true);
+    setHelp->exec();
 
 }
 
@@ -292,7 +294,7 @@ void PlayerInput:: handlehButton()
 void PlayerInput:: updateLabels()
 {
     //If each command is or isn't set, set the labels accordingly
-    if (!(game->getMove()))
+    if (!(game->moveSet))
     {
         nav->setText("Navigation Command Not Set");
     }
@@ -300,7 +302,7 @@ void PlayerInput:: updateLabels()
     {
         nav->setText("Navigation Command Set");
     }
-    if (!(game->getScan()))
+    if (!(game->scanSet))
     {
         scan->setText("Scanning Command Not Set");
     }
@@ -308,52 +310,60 @@ void PlayerInput:: updateLabels()
     {
         scan->setText("Scanning Command Set");
     }
-    if (!(game->getTact()))
+    if (!(game->tactSet))
     {
-       tact->setText("Tactical Command Not Set");
+        tact->setText("Tactical Command Not Set");
     }
     else
     {
         tact->setText("Tactical Command Set");
     }
     //Set labels for health, torpedos, mines and enigma codes
-    cHealth->setText(QString::number(game->getPH()));
-    cTorp->setText(QString::number(game->getTorps()));
-    cMine->setText(QString::number(game->getMines()));
-    cCode->setText(QString::number((game->getPN())));
-    for (int k = 0; k< map.size();k++)
+    cHealth->setText(QString::number(game->playerHealth));
+    cTorp->setText(QString::number(game->playerTorpedos));
+    cMine->setText(QString::number(game->playerMines));
+    cCode->setText(QString::number((game->piecesNeeded)));
+    mapIn=game->map;
+    for (int k = 0; k< static_cast<int>(map.size());k++)
     {
-        if (mapIn[k]==(nullptr))
-                {
-                    map.at(k)->setText("-");
-                }
-               else if (mapIn[k]->toString().compare("player") == 0)
-                {
-                    map.at(k)->setText("P");
-                }
-        else if (mapIn[k]->toString().compare("enemy") == 0)
-                {
-                    map.at(k)->setText(("E"));
-                }
-                else if (mapIn[k]->toString().compare("torpedo") == 0)
-                        {
-                            map.at(k)->setText("T");
-                        }
-                else if (mapIn[k]->toString().compare("mine") == 0)
-                        {
-                            map.at(k)->setText("M");
-                        }
-                else if (mapIn[k]->toString().compare("wreck") == 0)
-                        {
-                            map.at(k)->setText("W");
-                        }
-                else
-                {
-                    map.at(k)->setText("");
-                }
-
+        map.at(k)->clear();
     }
 
+    for (int k = 0; k< static_cast<int>(map.size());k++)
+    {
+
+        if (mapIn[k]==(nullptr))
+        {
+
+            map.at(k)->setText("-");
+        }
+        else if (mapIn[k]->toString().compare("player") == 0)
+        {
+            map.at(k)->setText("P");
+        }
+        else if (game->map[k]->toString().compare("enemy") == 0)
+        {
+            map.at(k)->setText(("E"));
+        }
+        else if (mapIn[k]->toString().compare("torpedo") == 0)
+        {
+            map.at(k)->setText("T");
+        }
+        else if (mapIn[k]->toString().compare("mine") == 0)
+        {
+            map.at(k)->setText("M");
+        }
+        else if (mapIn[k]->toString().compare("wreck") == 0)
+        {
+            map.at(k)->setText("W");
+        }
+        else
+        {
+            map.at(k)->setText("");
+        }
+
+    }
+    mapLayout->update();
     checkGameOver(game);
 
 }
@@ -361,7 +371,7 @@ void PlayerInput:: updateLabels()
 void PlayerInput::checkGameOver(Game* game)
 {
     //Victory
-    if (game->getPN() == 0)
+    if (game->piecesNeeded == 0)
     {
         QMessageBox messageBox(this);
         messageBox.about(this, "Congradulation", "All pieces collected, plan successful\n \\(^o^)/  \\(^0^)/  \\(^o^)/  \\(^0^)/");
@@ -370,7 +380,7 @@ void PlayerInput::checkGameOver(Game* game)
     }
 
     //Defeat
-    if (game->getPH() == 0)
+    if (game->playerHealth == 0)
     {
         QMessageBox messageBox(this);
         messageBox.about(this, "Comiseration", "Submarine has been compromised, plan unsuccessful\n /(XoX)\\");
@@ -378,5 +388,7 @@ void PlayerInput::checkGameOver(Game* game)
         this->close();
     }
 }
+
+
 
 

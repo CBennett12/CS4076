@@ -240,6 +240,7 @@ Uno** Game::getMap()
 
 void Game::populateMap(Uno** map, Enemy** enemies)
 {
+
     int num = rand()%100;
     for (int i = 0; i < global/2; i++)
     {

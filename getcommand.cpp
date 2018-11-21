@@ -11,7 +11,7 @@ GetCommand::GetCommand(QWidget *parent, string lastSelected) :
     string title ="Get " + lastSelected + " Command";
     this->setWindowTitle(QString::fromStdString(title));
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-   //Create a button group for the different commands
+    //Create a button group for the different commands
     QButtonGroup* btnGroup = new QButtonGroup(this);
     QVBoxLayout* buttonsLayout = new QVBoxLayout(this);
     buttonsLayout->setSpacing(0);
@@ -162,7 +162,7 @@ int GetCommand:: getBtnPressed() const
 
 void GetCommand::buttonWasClicked(int buttonID)
 {
-   btnPressed = buttonID;
+    btnPressed = buttonID;
 }
 
 //Sets the type of commadn we are setting
