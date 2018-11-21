@@ -5,11 +5,12 @@ using namespace std;
 #include "playerInput.h"
 #include "starter.h"
 
-extern const unsigned int global = 10; //Here you go Chris. We found a good use for it. You'll see.
+const unsigned int global = 10; //Here you go Chris. We found a good use for it. You'll see.
+//static const unsigned int halfGlobal;
+
 
 int main(int argc, char **argv)
 {
-
 
     QApplication a(argc, argv);
     MainWindow *window = new MainWindow();

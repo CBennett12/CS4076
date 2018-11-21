@@ -4,7 +4,10 @@
 #include <qmessagebox.h>
 #define globalSquared global*global
 
-Game::Game()
+
+
+
+Game::Game() :halfGlobal(global/2) //tried using initializer
 {
     Room pMap [globalSquared];
     //makeMap(pMap);
@@ -23,7 +26,6 @@ Game::Game()
     playerMines = maxMines = 5;
     piecesNeeded = global/2;
     playerCodes = 0;
-
 }
 
 void Game::spawnEnemies(Enemy arr [])
@@ -40,10 +42,13 @@ void Game::spawnPlayer()
 
 }
 
-void Game::makeMap(Room* pMap[])
+void Game::makeMap(Uno *map[])
 {
     for(unsigned int i = 0; i < globalSquared; i++)
-        pMap[i] = new Room(static_cast<int>(i));
+    {
+        //pMap[i] = new Room(static_cast<int>(i));
+        map[i] = nullptr;
+    }
 }
 
 //the next 3 functions all set the command inputted to the array, and set their relevant booleans

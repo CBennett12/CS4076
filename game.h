@@ -2,6 +2,9 @@
 #define GAME_H
 #include <Room.h>
 #include <enemy.h>
+#include <starter.h>
+#define globalHalfed global/2
+#define halfedGlobal 5
 
 class Game
 {
@@ -25,19 +28,19 @@ public:
 private:
     void spawnPlayer();
     void spawnEnemies(Enemy[]);
-    void makeMap(Room* []);
+    void makeMap(Uno* []);
 
     bool moveSet;
     bool scanSet;
     bool tactSet;
     string commands[3];
     int playerHealth, playerTorpedos, playerMines, playerCodes, maxHealth, maxTorpedos, maxMines, piecesNeeded;
-
-    //Enemy tempEnemy;
-    Room* map;
-    Room temp;
-    Room pMap [];
-
+    const unsigned int halfGlobal;
+    Enemy tempEnemy;
+    //Room* map;
+    //Enemy enemies[globalHalfed];
+    Enemy enemies[halfedGlobal];
+    Uno *map[100];
 
 
 };
