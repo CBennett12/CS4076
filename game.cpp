@@ -14,6 +14,7 @@ Game::Game() :halfGlobal(global/2) //tried using initializer
 {
     Uno* pMap [100];
     makeMap(pMap);
+    srand(time(NULL)); //makes random numbers random
     string commands[3];
     /*
      * commands[0] = moveCommand
@@ -49,7 +50,7 @@ void Game::makeMap(Uno *map[])
 {
     for(unsigned int i = 0; i < globalSquared; i++)
     {
-        map[i] = nullptr;
+        map[i] = new Player();
     }
 }
 
@@ -224,4 +225,20 @@ bool Game :: getTact() const
 Uno** Game::getMap()
 {
     return map;
+}
+
+void Game::populateMap(Uno*[])
+{
+    int populatedRooms[global/2 + 1];
+    for(int i = 0; i > global/2 + 1; i++)
+    {
+        if(i == 0)
+        {
+            //set players room
+        }
+        else
+        {
+            //set computers room
+        }
+    }
 }

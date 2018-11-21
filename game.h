@@ -3,11 +3,13 @@
 #include <Room.h>
 #include <enemy.h>
 #include <starter.h>
+#include <time.h>
 #define globalHalfed global/2
 #define halfedGlobal 5
 
 class Game
 {
+friend class PlayerInput;
 public:
     Game();
     ~Game();
@@ -30,6 +32,7 @@ private:
     void spawnPlayer();
     void spawnEnemies(Enemy[]);
     void makeMap(Uno* []);
+    void populateMap(Uno**);
 
     bool moveSet;
     bool scanSet;
@@ -42,8 +45,6 @@ private:
     //Enemy enemies[globalHalfed];
     Enemy enemies[halfedGlobal];
     Uno *map[100];
-
-
 };
 
 #endif // GAME_H

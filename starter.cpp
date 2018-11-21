@@ -1,9 +1,9 @@
+#include "starter.h"
+#include "mainwindow.h"
+#include "playerInput.h"
 #include <QApplication>
 #include <iostream>
 using namespace std;
-#include "mainwindow.h"
-#include "playerInput.h"
-#include "starter.h"
 
 const unsigned int global = 10; //Here you go Chris. We found a good use for it. You'll see.
 //static const unsigned int halfGlobal;
@@ -11,7 +11,6 @@ const unsigned int global = 10; //Here you go Chris. We found a good use for it.
 
 int main(int argc, char **argv)
 {
-
     QApplication a(argc, argv);
     MainWindow *window = new MainWindow();
     PlayerInput *in = new PlayerInput();
@@ -21,5 +20,4 @@ int main(int argc, char **argv)
 
 
     return a.exec();
-
 }
