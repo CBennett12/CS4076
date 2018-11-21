@@ -16,7 +16,7 @@ void Player::operator+(Enemy *sT)
 
 string Player::toString()
 {
-    return("player");
+    return("p");
 }
 
 

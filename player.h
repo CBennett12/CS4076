@@ -10,10 +10,10 @@ class Player : public Ship
 public:
     Player();
     void operator+(Enemy *sT);
+    string toString();
 
 private:
     int maxHealth, maxMines, maxTorpedos, enigmaCodes;
-    string toString();
 };
 
 #endif // PLAYER_H

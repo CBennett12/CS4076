@@ -7,5 +7,5 @@ Torpedo::Torpedo()
 
 string Torpedo::toString()
 {
-    return "torpedo";
+    return "t";
 }

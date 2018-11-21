@@ -48,7 +48,7 @@ private:
     //Room* map;
     //Enemy enemies[globalHalfed];
     Enemy enemies[halfedGlobal];
-    Uno *map[100];
+    Uno *pMap[100];
 };
 
 #endif // GAME_H

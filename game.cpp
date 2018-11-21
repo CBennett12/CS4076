@@ -12,7 +12,7 @@
 
 Game::Game() :halfGlobal(global/2) //tried using initializer
 {
-    Uno* pMap [100];
+    //Uno* pMap [100];
     makeMap(pMap);
     srand(time(NULL)); //makes random numbers random
     string commands[3];
@@ -31,7 +31,7 @@ Game::Game() :halfGlobal(global/2) //tried using initializer
     piecesNeeded = global/2;
     playerCodes = 0;
 
-    populateMap(map);
+    populateMap(pMap);
 }
 
 void Game::spawnEnemies(Enemy arr [])
@@ -52,8 +52,12 @@ void Game::makeMap(Uno *map[])
 {
     for(unsigned int i = 0; i < globalSquared; i++)
     {
-        map[i] = new Player();
+        map[i] = nullptr;
+
     }
+    /*
+    map[14] = new Player();
+    map[83] = new Enemy();*/
 }
 
 //the next 3 functions all set the command inputted to the array, and set their relevant booleans
@@ -226,7 +230,7 @@ bool Game :: getTact() const
 
 Uno** Game::getMap()
 {
-    return map;
+    return pMap;
 }
 
 void Game::populateMap(Uno** map)

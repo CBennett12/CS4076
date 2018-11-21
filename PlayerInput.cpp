@@ -75,8 +75,7 @@ PlayerInput::PlayerInput()
                     {
                         map.push_back(new QLabel("-"));
                     }
-                    else
-                    if (mapIn[index]->toString().compare("player") == 0)
+                   else if (mapIn[index]->toString().compare("p") == 0)
                     {
                         map.push_back(new QLabel("P"));
                     }
