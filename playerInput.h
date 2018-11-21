@@ -77,7 +77,7 @@ private slots:
     void handlehButton();
 
 
-    void changePixmap();
+    void updateLabels();
 
 
 

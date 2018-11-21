@@ -131,7 +131,7 @@ PlayerInput::PlayerInput()
     infoLayout->addWidget(cCode, 1, 3, Qt::AlignCenter);
 
     //Call the fucntion to set the text in the labels for the commands and information
-    changePixmap();
+    updateLabels();
 
     //Add the 3 layouts to the main layout
     /*
@@ -152,7 +152,7 @@ PlayerInput::PlayerInput()
 
     //Set the booleans for each command to false
 
-    //changePixmap();
+    //updateLabels();
 
     //slots for each command button
     connect(moveBtn, SIGNAL (released()), this, SLOT (handlemButton()));
@@ -188,7 +188,7 @@ void PlayerInput:: handlemButton()
         if (command.size()>0)
             {
             game->setCommand(command,0);
-            changePixmap();
+            updateLabels();
             }
     }
 
@@ -213,7 +213,7 @@ void PlayerInput:: handlesButton()
         {
 
             game->setCommand(command, 1);
-            changePixmap();
+            updateLabels();
         }
     }
 }
@@ -251,7 +251,7 @@ void PlayerInput:: handletButton()
             else
             {
             game->setCommand(command, 2);
-            changePixmap();
+            updateLabels();
             }
         }
     }
@@ -281,7 +281,7 @@ void PlayerInput:: handleExButton()
         }
     //When all commands have been executed, reset them and update the labels
         game->resetCommands();
-        changePixmap();
+        updateLabels();
     }
     else
     {
@@ -301,7 +301,7 @@ void PlayerInput:: handlehButton()
 }
 
 
-void PlayerInput:: changePixmap()
+void PlayerInput:: updateLabels()
 {
     //If each command is or isn't set, set the labels accordingly
     if (!(game->getMove()))
@@ -333,6 +333,39 @@ void PlayerInput:: changePixmap()
     cTorp->setText(QString::number(game->getTorps()));
     cMine->setText(QString::number(game->getMines()));
     cCode->setText(QString::number((game->getPN())));
+    for (int k = 0; k< map.size();k++)
+    {
+        if (mapIn[k]==(nullptr))
+                {
+                    map.at(k)->setText("-");
+                }
+               else if (mapIn[k]->toString().compare("player") == 0)
+                {
+                    map.at(k)->setText("P");
+                }
+        else if (mapIn[k]->toString().compare("enemy") == 0)
+                {
+                    map.at(k)->setText(("E"));
+                }
+                else if (mapIn[k]->toString().compare("torpedo") == 0)
+                        {
+                            map.at(k)->setText("T");
+                        }
+                else if (mapIn[k]->toString().compare("mine") == 0)
+                        {
+                            map.at(k)->setText("M");
+                        }
+                else if (mapIn[k]->toString().compare("wreck") == 0)
+                        {
+                            map.at(k)->setText("W");
+                        }
+                else
+                        {
+                            map.at(k)->setText("");
+                        }
+
+    }
+
     checkGameOver(game);
 
 }
