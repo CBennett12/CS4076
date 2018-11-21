@@ -4,8 +4,12 @@
 #include <enemy.h>
 #include <starter.h>
 #include <time.h>
+#include <vector>
+#include <iostream>
 #define globalHalfed global/2
 #define halfedGlobal 5
+
+using namespace std;
 
 class Game
 {

@@ -2,5 +2,10 @@
 
 Mine::Mine()
 {
-    this->type = UnoType::Mine;
+
+}
+
+void Mine::toString()
+{
+    cout<<"I'm a mine"<<endl;
 }

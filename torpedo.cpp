@@ -1,7 +1,11 @@
 #include "torpedo.h"
 
-Torpedo::Torpedo(string heading)
+Torpedo::Torpedo()
 {
-    this->type = UnoType::Torpedo;
-    this->heading = heading;
+
+}
+
+void Torpedo::toString()
+{
+    cout<<"I'm a torpedo!"<<endl;
 }

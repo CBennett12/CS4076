@@ -36,7 +36,10 @@ SOURCES += \
     player.cpp \
     enemy.cpp \
     moveable.cpp \
-    helpwindow.cpp
+    helpwindow.cpp \
+    torpedo.cpp \
+    mine.cpp \
+    wreckage.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -50,7 +53,10 @@ HEADERS += \
     player.h \
     enemy.h \
     moveable.h \
-    helpwindow.h
+    helpwindow.h \
+    torpedo.h \
+    mine.h \
+    wreckage.h
 
 FORMS += \
         mainwindow.ui \
