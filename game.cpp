@@ -218,3 +218,8 @@ bool Game :: getTact() const
 {
     return tactSet;
 }
+
+Uno** Game::getMap()
+{
+    return map;
+}

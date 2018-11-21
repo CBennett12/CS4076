@@ -24,6 +24,7 @@ public:
     void useMove();
     void setCommand(string command, int index);
     void resetCommands();
+    Uno** getMap();
 
 private:
     void spawnPlayer();
