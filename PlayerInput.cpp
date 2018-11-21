@@ -69,8 +69,17 @@ PlayerInput::PlayerInput()
     {
         for(unsigned int j = 0; j < global; j++)
         {
-            map.push_back(new QLabel(QString::fromStdString(to_string(index))));
+            Uno** mapIn = game->getMap();
+            if (mapIn[index]==(nullptr))
+                {
+                    map.push_back(new QLabel("?"));
+                }
+            else
+            {
+            map.push_back(new QLabel(QString::number(index)));
+            }
             //map.push_back(new QLabel("?"));
+
             mapLayout->addWidget(map.at(index),(static_cast<int>(i)),(static_cast<int>(j)));
             //cout << index << endl;
             index++;
