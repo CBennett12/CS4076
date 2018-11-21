@@ -8,5 +8,5 @@ Uno::~Uno()
 
 string Uno::toString()
 {
-    return("");
+    return("uno");
 }

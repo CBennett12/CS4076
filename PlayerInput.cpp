@@ -42,25 +42,14 @@ PlayerInput::PlayerInput()
 
     buttonLayout->addWidget(nav,0,1, Qt::AlignCenter);
     buttonLayout->addWidget(moveBtn,1,1);
-    /*buttonLayout->addWidget(reverse,3,1);
-    buttonLayout->addWidget(port,0,2);
-    buttonLayout->addWidget(starboard,0,2);*/
 
     buttonLayout->addWidget(scan,0,2, Qt::AlignCenter);
     buttonLayout->addWidget(scanBtn,1,2);
-    /*buttonLayout->addWidget(scanPas,4,2);*/
-
     buttonLayout->addWidget(tact,0,3, Qt::AlignCenter);
     buttonLayout->addWidget(tactBtn,1,3);
-    /*buttonLayout->addWidget(layMine,6,2);
-    buttonLayout->addWidget(reloadTorp,7,1);
-    buttonLayout->addWidget(reloadMine,7,2);
-    buttonLayout->addWidget(salvage,7,3);*/
 
-    //buttonLayout->addWidget(execute,1,2, Qt::AlignCenter);
     buttonLayout->addWidget(executeBtn,2, 2, 2, 1);
 
-    //buttonLayout->addWidget(help,3,2, Qt::AlignCenter);
     buttonLayout->addWidget(helpBtn,4,2);
 
     mapLayout = new QGridLayout();
@@ -152,7 +141,6 @@ PlayerInput::PlayerInput()
 
     //Set the booleans for each command to false
 
-    //updateLabels();
 
     //slots for each command button
     connect(moveBtn, SIGNAL (released()), this, SLOT (handlemButton()));
@@ -360,9 +348,9 @@ void PlayerInput:: updateLabels()
                             map.at(k)->setText("W");
                         }
                 else
-                        {
-                            map.at(k)->setText("");
-                        }
+                {
+                    map.at(k)->setText("");
+                }
 
     }
 
