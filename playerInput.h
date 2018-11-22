@@ -52,6 +52,7 @@ class PlayerInput : public QWidget
         void useMove(string command);
         void checkGameOver(Game* game);
         void updateMap(Room[]);
+        void updateMapLabels();
         //void updateValues(uno[]);
         //can't do an array of abstract class
         void updateUI();

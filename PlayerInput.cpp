@@ -54,12 +54,12 @@ PlayerInput::PlayerInput()
 
     mapLayout = new QGridLayout();
     unsigned int index = 0;
-
+    mapIn = game->map;
     for(unsigned int i = 0; i < global; i++)
     {
         for(unsigned int j = 0; j < global; j++)
         {
-            mapIn = game->map;
+
             if (mapIn[index]==(nullptr))
             {
                 map.push_back(new QLabel("-"));
@@ -68,23 +68,23 @@ PlayerInput::PlayerInput()
             {
                 map.push_back(new QLabel("P"));
             }
-            else if (mapIn[index]->toString().compare("enemy") == 0)
+            /*else if (mapIn[index]->toString().compare("enemy") == 0)
             {
-                map.push_back(new QLabel("E"));
+                map.push_back(new QLabel(""));
             }
             else if (mapIn[index]->toString().compare("torpedo") == 0)
             {
-                map.push_back(new QLabel("T"));
+                map.push_back(new QLabel(""));
             }
             else if (mapIn[index]->toString().compare("mine") == 0)
             {
-                map.push_back(new QLabel("M"));
+                map.push_back(new QLabel(""));
             }
             else if (mapIn[index]->toString().compare("wreck") == 0)
             {
-                map.push_back(new QLabel("W"));
+                map.push_back(new QLabel(""));
             }
-            else
+            */else
             {
                 map.push_back(new QLabel(""));
             }
@@ -136,7 +136,7 @@ PlayerInput::PlayerInput()
     mainLayout->addLayout(infoLayout, 2, 0, Qt::AlignCenter);
     mainLayout->addLayout(buttonLayout, 4, 0, Qt::AlignBottom);
 
-    updateLabels();
+    //updateLabels();
     game->populateMap(game->map,game->enemies);
     setLayout(mainLayout);
 
@@ -270,8 +270,9 @@ void PlayerInput:: handleExButton()
             game->useAttack();
         }
         //When all commands have been executed, reset them and update the labels
-        game->resetCommands();
         updateLabels();
+        updateMapLabels();
+        game->resetCommands();
     }
     else
     {
@@ -293,6 +294,8 @@ void PlayerInput:: handlehButton()
 
 void PlayerInput:: updateLabels()
 {
+
+    mapIn=game->map;
     //If each command is or isn't set, set the labels accordingly
     if (!(game->moveSet))
     {
@@ -323,47 +326,12 @@ void PlayerInput:: updateLabels()
     cTorp->setText(QString::number(game->playerTorpedos));
     cMine->setText(QString::number(game->playerMines));
     cCode->setText(QString::number((game->piecesNeeded)));
-    mapIn=game->map;
-    for (int k = 0; k< static_cast<int>(map.size());k++)
-    {
-        map.at(k)->clear();
-    }
 
-    for (int k = 0; k< static_cast<int>(map.size());k++)
-    {
 
-        if (mapIn[k]==(nullptr))
-        {
 
-            map.at(k)->setText("-");
-        }
-        else if (mapIn[k]->toString().compare("player") == 0)
-        {
-            map.at(k)->setText("P");
-        }
-        else if (game->map[k]->toString().compare("enemy") == 0)
-        {
-            map.at(k)->setText(("E"));
-        }
-        else if (mapIn[k]->toString().compare("torpedo") == 0)
-        {
-            map.at(k)->setText("T");
-        }
-        else if (mapIn[k]->toString().compare("mine") == 0)
-        {
-            map.at(k)->setText("M");
-        }
-        else if (mapIn[k]->toString().compare("wreck") == 0)
-        {
-            map.at(k)->setText("W");
-        }
-        else
-        {
-            map.at(k)->setText("");
-        }
-
-    }
-    mapLayout->update();
+    /*mapLayout->update();
+    mainLayout->addLayout(mapLayout, 0, 0, 2, 1);
+    mainLayout->update();*/
     checkGameOver(game);
 
 }
@@ -389,6 +357,46 @@ void PlayerInput::checkGameOver(Game* game)
     }
 }
 
+void PlayerInput::updateMapLabels()
+{
+    for (int k = 0; k< static_cast<int>(map.size());k++)
+    {
+        map.at(k)->clear();
+    }
+    //mainLayout->removeItem(mapLayout);
+    for (int j = 0; j< static_cast<int>(map.size());j++)
+    {
+
+        if (mapIn[j]==(nullptr))
+        {
+            map.at(j)->setText("-");
+        }
+        else if (mapIn[j]->toString().compare("player") == 0)
+        {
+            map.at(j)->setText("P");
+        }
+        else if (game->map[j]->toString().compare("enemy") == 0)
+        {
+            map.at(j)->setText(("E"));
+        }
+        else if (mapIn[j]->toString().compare("torpedo") == 0)
+        {
+            map.at(j)->setText("T");
+        }
+        else if (mapIn[j]->toString().compare("mine") == 0)
+        {
+            map.at(j)->setText("M");
+        }
+        else if (mapIn[j]->toString().compare("wreck") == 0)
+        {
+            map.at(j)->setText("W");
+        }
+        else
+        {
+            map.at(j)->setText("");
+        }
+    }
+}
 
 
 

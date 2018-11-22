@@ -240,19 +240,16 @@ Uno** Game::getMap()
 
 void Game::populateMap(Uno** map, Enemy** enemies)
 {
-
     int num = rand()%100;
     for (int i = 0; i < global/2; i++)
     {
-        while(find(populatedRooms.begin(), populatedRooms.end(), num) != populatedRooms.end())
-        {
+
             num = rand()%100;
             if(map[num] == nullptr)
             {
                 populatedRooms.push_back(num);
-                map[num] = enemies[i-1];
+                map[num] = enemies[i];
             }
-        }
     }
 }
 
