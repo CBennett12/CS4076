@@ -80,25 +80,44 @@ void Game::setCommand(string command, int index)
 //Handler for the movement command
 void Game::useMove()
 {
-    if (commands[0].compare("1")==0)
+    if (!(commands[0].compare("0") == 0))
     {
-        //Go Forward
-    }
-    else
-        if (commands[0].compare("2")==0)
+        cout<<sizeof (pPtr)<<endl;
+        cout<<sizeof(Uno*)<<endl;
+        cout<<sizeof(nullptr)<<endl;
+        cout<<"hi"<<endl;
+        cout<<playerRoom<<endl;
+        cout<<pPtr->checkMove(playerRoom)<<endl;
+        cout<<"love"<<endl;
+        cout<<pPtr<<endl;
+        //Uno* tPtr;
+        if (commands[0].compare("1")==0 && pPtr->checkMove(-10))
         {
-            //Go Backwards
+            map[playerRoom-10] = map[playerRoom];
+            map[playerRoom] = nullptr;
+            playerRoom -=10;
         }
-        else
-            if (commands[0].compare("3")==0)
-            {
-                //Turn Port
-            }
-            else
-                if (commands[0].compare("4")==0)
-                {
-                    //Turn Starboard
-                }
+        else if (commands[0].compare("2")==0 && pPtr->checkMove(+10))
+        {
+            map[playerRoom+10] = map[playerRoom];
+            map[playerRoom] = nullptr;
+            playerRoom +=10;
+            //map[playerRoom -10] = nullptr;
+        }
+        else if (commands[0].compare("3")==0 && pPtr->checkMove(+1))
+        {
+            map[playerRoom+1] = map[playerRoom];
+            map[playerRoom] = nullptr;
+            playerRoom +=1;
+        }
+        else if (commands[0].compare("4")==0 && pPtr->checkMove(-1))
+        {
+            map[playerRoom-1] = map[playerRoom];
+            map[playerRoom] = nullptr;
+            playerRoom -=1;
+        }
+        cout<<playerRoom<<endl;
+    }
 }
 
 //handler for the scanning command
@@ -127,63 +146,59 @@ void Game::useAttack()
             playerMines--;
         }
     }
-    else
-        if (commands[2].compare("2")==0)
+    else if (commands[2].compare("2")==0)
+    {
+        //Fire Torpedo North
+        if (playerTorpedos != 0)
         {
-            //Fire Torpedo North
-            if (playerTorpedos != 0)
-            {
-                //player.shoot();
-                playerTorpedos--;
-            }
+            //player.shoot();
+            playerTorpedos--;
         }
-        else
-            if (commands[2].compare("3")==0)
-            {
-                //Fire Torpedo South
-                if (playerTorpedos != 0)
-                {
-                    //player.shoot();
-                    playerTorpedos--;
-                }
-            }
-            else if (commands[2].compare("4")==0)
-            {
-                //Fire Torpedo East
-                if (playerTorpedos != 0)
-                {
-                    //player.shoot();
-                    playerTorpedos--;
-                }
-            }
-            else
-                if (commands[2].compare("5")==0)
-                {
-                    //Fire Torpedo West
-                    if (playerTorpedos != 0)
-                    {
-                        //player.shoot("West");
-                        playerTorpedos--;
-                    }
-                }
-                else
-                    if (commands[2].compare("6")==0)
-                    {
-                        //Salvage Wreckage
+    }
+    else if (commands[2].compare("3")==0)
+    {
+        //Fire Torpedo South
+        if (playerTorpedos != 0)
+        {
+            //player.shoot();
+            playerTorpedos--;
+        }
+    }
+    else if (commands[2].compare("4")==0)
+    {
+        //Fire Torpedo East
+        if (playerTorpedos != 0)
+        {
+            //player.shoot();
+            playerTorpedos--;
+        }
+    }
+    else if (commands[2].compare("5")==0)
+    {
+        //Fire Torpedo West
+        if (playerTorpedos != 0)
+        {
+            //player.shoot("West");
+            playerTorpedos--;
+        }
+    }
+    else if (commands[2].compare("6")==0)
+    {
+        //Salvage Wreckage
 
-                        //player+ship()
+        //player+ship()
 
-                        /*
+        /*
                  * if (room has a destroyed ship)
                  * {
                  *  playership=playerShip+destroyedShip;
                  * }
                  */
-                        playerCodes++;
-                        playerTorpedos=maxTorpedos;
-                        playerMines=maxMines;
-                        playerHealth=maxHealth;
-                    }
+        playerCodes++;
+        playerTorpedos=maxTorpedos;
+        playerMines=maxMines;
+        playerHealth=maxHealth;
+    }
 }
 
 //A pretty Ronseal function, resets the commands array and booleans
@@ -244,12 +259,12 @@ void Game::populateMap(Uno** map, Enemy** enemies)
     for (int i = 0; i < global/2; i++)
     {
 
-            num = rand()%100;
-            if(map[num] == nullptr)
-            {
-                populatedRooms.push_back(num);
-                map[num] = enemies[i];
-            }
+        num = rand()%100;
+        if(map[num] == nullptr)
+        {
+            populatedRooms.push_back(num);
+            map[num] = enemies[i];
+        }
     }
 }
 
@@ -257,5 +272,6 @@ void Game::populatePlayer(Uno** map, Player* ptr)
 {
     int num = rand()%100;
     populatedRooms.push_back(num);
+    playerRoom = num;
     map[num] = pPtr;
 }

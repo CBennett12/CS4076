@@ -108,10 +108,10 @@ GetCommand::~GetCommand()
 //If selecting movement command, set list of commands to the movement list
 void GetCommand:: isMove(string cList[5])
 {
-    cList[0]="Go Forward";
-    cList[1]="Go Backward";
-    cList[2]="Turn Port";
-    cList[3]="Turn Starboard";
+    cList[0]="Move North";
+    cList[1]="Move South";
+    cList[2]="Move East";
+    cList[3]="Move West";
     cList[4]="";
     cList[5]="";
 

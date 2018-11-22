@@ -9,7 +9,9 @@ class Player : public Ship
 {
 public:
     Player();
+    ~Player();
     void operator+(Enemy *sT);
+    Player& operator=(const Player& p);
     string toString();
 
 private:

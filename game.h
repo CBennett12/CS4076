@@ -7,6 +7,7 @@
 #include <vector>
 #include <iostream>
 #include <player.h>
+#include <uno.h>
 #define globalHalfed global/2
 #define halfedGlobal 5
 
@@ -48,11 +49,14 @@ private:
     const unsigned int halfGlobal;
     Enemy tempEnemy;
     Player *pPtr;
+    //Player *tPtr;
     //Room* map;
     //Enemy enemies[globalHalfed];
     Enemy *enemies[halfedGlobal];
     Uno *map[100];
     vector<int> populatedRooms;
+    int playerRoom;
+    int tempRoom;
 };
 
 #endif // GAME_H

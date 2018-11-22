@@ -359,14 +359,15 @@ void PlayerInput::checkGameOver(Game* game)
 
 void PlayerInput::updateMapLabels()
 {
+    /*
     for (int k = 0; k< static_cast<int>(map.size());k++)
     {
         map.at(k)->clear();
-    }
+    }*/
     //mainLayout->removeItem(mapLayout);
     for (int j = 0; j< static_cast<int>(map.size());j++)
     {
-
+        map.at(j)->clear();
         if (mapIn[j]==(nullptr))
         {
             map.at(j)->setText("-");
