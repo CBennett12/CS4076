@@ -21,6 +21,7 @@ void Player::operator+(Enemy *sT)
 
 Player& Player::operator=(const Player& p)
 {
+    //copy constructor
     Player tmp(p);
     this->health = p.health;
     this->torpedo = p.torpedo;
